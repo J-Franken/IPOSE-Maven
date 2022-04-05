@@ -1,3 +1,3 @@
 public enum EntityTypes {
-    PLAYER, STAR
+    PLAYER, PLATFORM, COIN, DOOR, KEY,
 }

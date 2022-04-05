@@ -1,17 +1,30 @@
+import com.almasb.fxgl.animation.Interpolators;
+import com.almasb.fxgl.app.ApplicationMode;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
+import com.almasb.fxgl.app.scene.GameView;
+import com.almasb.fxgl.app.scene.LoadingScene;
+import com.almasb.fxgl.app.scene.SceneFactory;
+import com.almasb.fxgl.app.scene.Viewport;
+import com.almasb.fxgl.core.util.LazyValue;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.components.CollidableComponent;
+import com.almasb.fxgl.entity.level.Level;
+import com.almasb.fxgl.input.UserAction;
+import com.almasb.fxgl.input.view.KeyView;
+import com.almasb.fxgl.input.virtual.VirtualButton;
 import com.almasb.fxgl.physics.CollisionHandler;
-import javafx.scene.control.Label;
+import com.almasb.fxgl.physics.PhysicsComponent;
+import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 import java.util.Map;
-import java.util.concurrent.ThreadLocalRandom;
+
+import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class Game extends GameApplication {
 
@@ -19,40 +32,28 @@ public class Game extends GameApplication {
 
     @Override
     protected void initSettings(GameSettings gameSettings) {
-        gameSettings.setWidth(800);
-        gameSettings.setHeight(800);
+        gameSettings.setWidth(15 * 70);
+        gameSettings.setHeight(10 * 70);
         gameSettings.setTitle("Demo game");
-        gameSettings.setVersion("1.0");
+        gameSettings.setVersion("1.1");
     }
 
     @Override
     protected void initGame(){
-        player = FXGL.entityBuilder()
-                .at(400, 400)
-                .viewWithBBox("madotsuki.png")
-                .with(new CollidableComponent(true))
-                .type(EntityTypes.PLAYER)
-                .scale(3,3)
-                .buildAndAttach();
+        getGameWorld().addEntityFactory(new GameFactory());
 
-        FXGL.getGameTimer().runAtInterval(() -> {
-            int randomPosX = ThreadLocalRandom.current().nextInt(80,FXGL.getGameScene().getAppWidth() -80);
-            int randomPosY = ThreadLocalRandom.current().nextInt(80,FXGL.getGameScene().getAppWidth() -80);
-            FXGL.entityBuilder()
-                    .at(randomPosX, randomPosY)
-                    .viewWithBBox(new Circle(5, Color.YELLOW))
-                    .with(new CollidableComponent(true))
-                    .type(EntityTypes.STAR)
-                    .buildAndAttach();
-        }, Duration.millis(2000));
+        player = null;
+        setLevel();
 
-        FXGL.entityBuilder()
-                .at(200, 200)
-                .viewWithBBox(new Circle(5, Color.YELLOW))
-                .with(new CollidableComponent(true))
-                .type(EntityTypes.STAR)
-                .buildAndAttach();
+        player = spawn("player", 1, 1);
+
+        set("player", player);
+
+        Viewport viewport = getGameScene().getViewport();
+        viewport.setBounds(-1500, 0, 250 * 70, getAppHeight());
+        viewport.setLazy(true);
     }
+    
 
     @Override
     protected void initInput(){
@@ -72,31 +73,17 @@ public class Game extends GameApplication {
 
     @Override
     protected void initPhysics(){
-        FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.PLAYER, EntityTypes.STAR) {
-            @Override
-            protected void onCollision(Entity player, Entity star) {
-                FXGL.inc("kills", +1);
-               star.removeFromWorld();
-            }
+        FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.PLAYER, EntityTypes.PLATFORM) {
         });
     }
 
     @Override
     protected void initUI(){
-        Label myText = new Label("Hiya");
-        myText.setStyle("-fx-text-fill: white");
-        myText.setTranslateX(30);
-        myText.setTranslateY(30);
-        myText.textProperty().bind(FXGL.getWorldProperties().intProperty("kills").asString());
-
-
-        FXGL.getGameScene().addUINode(myText);
-        FXGL.getGameScene().setBackgroundColor(Color.BLACK);
+        FXGL.getGameScene().setBackgroundColor(Color.DIMGRAY);
     }
 
-    @Override
-    protected void initGameVars(Map<String, Object> vars){
-        vars.put("kills", 0);
+    private void setLevel() {
+        Level level = setLevelFromMap("castle.tmx");
     }
 
     public static void main(String[] args) {
