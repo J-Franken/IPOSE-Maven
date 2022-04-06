@@ -25,9 +25,9 @@ public class GameFactory implements EntityFactory {
     @Spawns("coin")
     public Entity newCoin(SpawnData data){
         return FXGL.entityBuilder()
-                .type(EntityTypes.COIN)
-                .viewWithBBox(new Circle(data.<Integer>get("width") / 2, Color.GOLD))
+                .viewWithBBox("star.png")
                 .with(new CollidableComponent(true))
+                .type(EntityTypes.COIN)
                 .build();
     }
 

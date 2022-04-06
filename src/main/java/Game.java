@@ -18,10 +18,12 @@ import com.almasb.fxgl.input.virtual.VirtualButton;
 import com.almasb.fxgl.physics.CollisionHandler;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import javafx.geometry.Point2D;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
+import java.awt.*;
 import java.util.Map;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
@@ -92,12 +94,28 @@ public class Game extends GameApplication {
     @Override
     protected void initPhysics(){
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.PLAYER, EntityTypes.COIN) {
+            @Override
+            protected void onCollision(Entity player, Entity coin) {
+                FXGL.inc("coin", +1);
+                coin.removeFromWorld();
+            }
         });
     }
 
     @Override
     protected void initUI(){
         FXGL.getGameScene().setBackgroundColor(Color.LIGHTBLUE);
+        javafx.scene.control.Label coinValue = new Label("Stars:");
+        coinValue.setTranslateX(20);
+        coinValue.setTranslateY(20);
+
+        coinValue.textProperty().bind(FXGL.getWorldProperties().intProperty("coin").asString());
+
+        FXGL.getGameScene().addUINode(coinValue);
+    }
+
+    protected void initGameVars(Map<String, Object> vars){
+        vars.put("coin",0);
     }
 
     private void setLevel() {
