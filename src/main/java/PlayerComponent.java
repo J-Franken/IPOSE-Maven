@@ -19,10 +19,10 @@ public class PlayerComponent extends Component {
 
     public PlayerComponent() {
 
-        Image image = image("madotsuki.png");
+        Image image = image("girl.png");
 
-        animIdle = new AnimationChannel(image, 4, 32, 42, Duration.seconds(1), 1, 1);
-        animWalk = new AnimationChannel(image, 4, 32, 42, Duration.seconds(0.66), 0, 3);
+        animIdle = new AnimationChannel(image, 3, 128/3, 42, Duration.seconds(1), 1, 1);
+        animWalk = new AnimationChannel(image, 3, 128/3, 42, Duration.seconds(0.66), 0, 3);
 
         texture = new AnimatedTexture(animIdle);
         texture.loop();
