@@ -28,6 +28,7 @@ import java.util.Map;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 
+
 public class Game extends GameApplication {
 
     private Entity player;
@@ -48,7 +49,7 @@ public class Game extends GameApplication {
         player = null;
         setLevel();
 
-        player = spawn("player", 60, 40);
+        player = spawn("player", 50, 50);
 
         set("player", player);
 
@@ -121,7 +122,7 @@ public class Game extends GameApplication {
 
     private void setLevel() {
         if (player != null) {
-            player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(1, 1));
+            player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(10, 10));
             player.setZIndex(Integer.MAX_VALUE);
         }
 
