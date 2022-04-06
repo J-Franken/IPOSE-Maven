@@ -19,18 +19,15 @@ public class GameFactory implements EntityFactory {
                 .type(EntityTypes.PLATFORM)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new CollidableComponent(true))
-                .with(new PhysicsComponent())
                 .build();
-
     }
 
     @Spawns("coin")
     public Entity newCoin(SpawnData data){
         return FXGL.entityBuilder()
-                .type(EntityTypes.COIN)
-                .viewWithBBox(new Circle(data.<Integer>get("width") / 2, Color.GOLD))
+                .viewWithBBox("star.png")
                 .with(new CollidableComponent(true))
-                .with(new PhysicsComponent())
+                .type(EntityTypes.COIN)
                 .build();
     }
 
@@ -42,8 +39,9 @@ public class GameFactory implements EntityFactory {
 
         return FXGL.entityBuilder()
                 .type(EntityTypes.PLAYER)
+                .from(data)
                 .bbox(new HitBox(new Point2D(5, 5), BoundingShape.circle(12)))
-                .bbox(new HitBox(new Point2D(10, 25), BoundingShape.box(10, 17)))
+                .bbox(new HitBox(new Point2D(10, 25), BoundingShape.box(10, 10)))
                 .with(physics)
                 .with(new CollidableComponent(true))
                 .with(new IrremovableComponent())
