@@ -50,7 +50,7 @@ public class Game extends GameApplication {
         player = null;
         nextLevel();
 
-        player = spawn("player", 50, 50);
+        player = spawn("player", 200, 50);
 
         set("player", player);
 
