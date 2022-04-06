@@ -38,6 +38,7 @@ public class Game extends GameApplication {
         gameSettings.setHeight(10 * 70);
         gameSettings.setTitle("Demo game");
         gameSettings.setVersion("1.2");
+        gameSettings.setMainMenuEnabled(true);
     }
 
     @Override
