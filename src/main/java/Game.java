@@ -47,12 +47,12 @@ public class Game extends GameApplication {
         player = null;
         setLevel();
 
-        player = spawn("player", 1, 1);
+        player = spawn("player", 60, 40);
 
         set("player", player);
 
         Viewport viewport = getGameScene().getViewport();
-        viewport.setBounds(-1500, 0, 250 * 70, getAppHeight());
+        viewport.bindToEntity(player, getAppWidth() / 2, getAppHeight() / 2);
         viewport.setLazy(true);
     }
     
@@ -69,7 +69,7 @@ public class Game extends GameApplication {
             protected void onActionEnd() {
                 player.getComponent(PhysicsComponent.class).setVelocityX(0);
             }
-        }, KeyCode.A);
+        }, KeyCode.A, VirtualButton.LEFT);
 
         getInput().addAction(new UserAction("Right") {
             @Override
@@ -81,14 +81,14 @@ public class Game extends GameApplication {
             protected void onActionEnd() {
                 player.getComponent(PhysicsComponent.class).setVelocityX(0);
             }
-        }, KeyCode.D);
+        }, KeyCode.D, VirtualButton.RIGHT);
 
         getInput().addAction(new UserAction("Jump") {
             @Override
             protected void onActionBegin() {
                 player.getComponent(PlayerComponent.class).jump();
             }
-        }, KeyCode.W);
+        }, KeyCode.W, VirtualButton.UP);
     }
 
     @Override
@@ -119,6 +119,11 @@ public class Game extends GameApplication {
     }
 
     private void setLevel() {
+        if (player != null) {
+            player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(1, 1));
+            player.setZIndex(Integer.MAX_VALUE);
+        }
+
         Level level = setLevelFromMap("gametest3.tmx");
     }
 
