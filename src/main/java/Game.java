@@ -7,7 +7,6 @@ import com.almasb.fxgl.app.scene.LoadingScene;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
 import com.almasb.fxgl.core.util.LazyValue;
-import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.components.CollidableComponent;
@@ -31,6 +30,8 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class Game extends GameApplication {
 
+    private static final int MAX_LEVEL = 4;
+    private static final int STARTING_LEVEL = 0;
     private Entity player;
 
     @Override
@@ -47,13 +48,14 @@ public class Game extends GameApplication {
         getGameWorld().addEntityFactory(new GameFactory());
 
         player = null;
-        setLevel();
+        nextLevel();
 
         player = spawn("player", 50, 50);
 
         set("player", player);
 
         Viewport viewport = getGameScene().getViewport();
+        viewport.setBounds(-1500, 0, 250 * 70, getAppHeight());
         viewport.bindToEntity(player, getAppWidth() / 2, getAppHeight() / 2);
         viewport.setLazy(true);
     }
@@ -95,10 +97,11 @@ public class Game extends GameApplication {
 
     @Override
     protected void initPhysics(){
-        FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.PLAYER, EntityTypes.COIN) {
+        getPhysicsWorld().setGravity(0, 760);
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.PLAYER, EntityTypes.COIN) {
             @Override
             protected void onCollision(Entity player, Entity coin) {
-                FXGL.inc("coin", +1);
+                inc("coin", +1);
                 coin.removeFromWorld();
             }
         });
@@ -106,27 +109,50 @@ public class Game extends GameApplication {
 
     @Override
     protected void initUI(){
-        FXGL.getGameScene().setBackgroundColor(Color.LIGHTBLUE);
+        getGameScene().setBackgroundColor(Color.LIGHTBLUE);
         javafx.scene.control.Label coinValue = new Label("Stars:");
         coinValue.setTranslateX(20);
         coinValue.setTranslateY(20);
 
-        coinValue.textProperty().bind(FXGL.getWorldProperties().intProperty("coin").asString());
+        coinValue.textProperty().bind(getWorldProperties().intProperty("coin").asString());
 
-        FXGL.getGameScene().addUINode(coinValue);
+        getGameScene().addUINode(coinValue);
+    }
+
+    protected void onUpdate() {
+        if (player.getY() > getAppHeight()) {
+            onPlayerDied();
+        }
     }
 
     protected void initGameVars(Map<String, Object> vars){
+        vars.put("level", STARTING_LEVEL);
         vars.put("coin",0);
     }
 
-    private void setLevel() {
-        if (player != null) {
-            player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(10, 10));
-            player.setZIndex(Integer.MAX_VALUE);
+    public void onPlayerDied() {
+        setLevel(geti("level"));
+    }
+
+
+    private void nextLevel() {
+        if (geti("level") == MAX_LEVEL) {
+            showMessage("You found a way out!");
+            return;
         }
 
-        Level level = setLevelFromMap("gametest3.tmx");
+        inc("level", +1);
+
+        setLevel(geti("level"));
+    }
+
+
+    private void setLevel(int levelNum) {
+        if (player != null) {
+            player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(50, 50));
+            player.setZIndex(Integer.MAX_VALUE);
+        }
+        Level level = setLevelFromMap("level" + levelNum  + ".tmx");
     }
 
     public static void main(String[] args) {
