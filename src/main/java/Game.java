@@ -94,6 +94,9 @@ public class Game extends GameApplication {
 
     @Override
     protected void initPhysics(){
+        FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.PLAYER, EntityTypes.PLATFORM) {
+        });
+
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.PLAYER, EntityTypes.COIN) {
             @Override
             protected void onCollision(Entity player, Entity coin) {
