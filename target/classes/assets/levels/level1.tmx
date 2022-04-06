@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.1" orientation="orthogonal" renderorder="right-down" width="15" height="10" tilewidth="70" tileheight="70" nextobjectid="20">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="15" height="10" tilewidth="70" tileheight="70" infinite="0" nextlayerid="3" nextobjectid="23">
  <tileset firstgid="1" name="tiles_spritesheet" tilewidth="70" tileheight="70" spacing="2" tilecount="156" columns="12">
   <image source="tiles_spritesheet.png" width="914" height="936"/>
  </tileset>
- <layer name="Tile Layer 1" width="15" height="10">
+ <layer id="1" name="Tile Layer 1" width="15" height="10">
   <data encoding="csv">
 153,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 153,2,0,0,69,57,45,0,0,0,0,0,0,0,0,
-153,10,0,0,0,0,0,0,0,0,0,0,0,0,0,
-153,153,0,0,0,0,0,0,15,3,3,27,0,0,0,
+153,104,0,0,0,0,0,0,0,0,0,0,0,0,0,
+153,153,0,0,0,0,0,0,3,3,3,3,0,0,0,
 153,153,0,0,0,0,0,0,0,0,0,0,0,0,0,
-153,153,0,0,0,0,0,0,0,0,0,0,0,0,116,
-153,153,0,0,0,0,0,0,15,3,3,27,0,116,153,
+153,153,0,0,0,0,0,0,0,0,0,0,0,0,104,
+153,153,0,0,0,0,0,0,3,3,3,3,0,57,153,
 153,153,0,0,69,81,57,0,0,0,0,0,0,153,153,
 153,153,0,0,0,0,0,0,0,0,0,0,0,153,153,
-153,153,10,105,0,0,0,129,105,0,0,0,129,153,153
+153,153,104,104,0,0,0,57,57,0,0,0,57,153,153
 </data>
  </layer>
- <objectgroup name="Object Layer 1">
+ <objectgroup id="2" name="Object Layer 1">
   <object id="1" type="platform" x="280" y="99" width="209" height="40"/>
   <object id="2" type="platform" x="560.5" y="209" width="282" height="40"/>
   <object id="3" type="platform" x="557" y="419" width="282" height="40"/>
@@ -37,5 +37,6 @@
   <object id="17" type="coin" x="421" y="0" width="68" height="68"/>
   <object id="18" type="coin" x="981" y="280" width="68" height="68"/>
   <object id="19" type="coin" x="841" y="561" width="68" height="68"/>
+  <object id="20" type="exit_trigger" x="70.0705" y="70.0705" width="64.7822" height="67.4263"/>
  </objectgroup>
 </map>

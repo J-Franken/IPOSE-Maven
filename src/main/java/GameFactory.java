@@ -6,6 +6,7 @@ import com.almasb.fxgl.physics.BoundingShape;
 import com.almasb.fxgl.physics.HitBox;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
+import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -38,6 +39,7 @@ public class GameFactory implements EntityFactory {
         PhysicsComponent physics = new PhysicsComponent();
         physics.setBodyType(BodyType.DYNAMIC);
         physics.addGroundSensor(new HitBox("GROUND_SENSOR", new Point2D(16 , 38), BoundingShape.box(6, 8)));
+        physics.setFixtureDef(new FixtureDef().friction(0.0f));
 
         return FXGL.entityBuilder(data)
                 .type(EntityTypes.PLAYER)
@@ -47,6 +49,15 @@ public class GameFactory implements EntityFactory {
                 .with(new CollidableComponent(true))
                 .with(new IrremovableComponent())
                 .with(new PlayerComponent())
+                .build();
+    }
+
+    @Spawns("exit_trigger")
+    public Entity newExitTrigger(SpawnData data) {
+        return FXGL.entityBuilder(data)
+                .type(EntityTypes.EXIT_TRIGGER)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
                 .build();
     }
 }

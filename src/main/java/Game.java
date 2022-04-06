@@ -105,6 +105,10 @@ public class Game extends GameApplication {
                 coin.removeFromWorld();
             }
         });
+
+        onCollisionOneTimeOnly(EntityTypes.PLAYER, EntityTypes.EXIT_TRIGGER, (player, trigger) -> {
+            nextLevel();
+        });
     }
 
     @Override
@@ -119,7 +123,7 @@ public class Game extends GameApplication {
         getGameScene().addUINode(coinValue);
     }
 
-    protected void onUpdate() {
+    protected void onUpdate(double tpf) {
         if (player.getY() > getAppHeight()) {
             onPlayerDied();
         }
@@ -149,7 +153,7 @@ public class Game extends GameApplication {
 
     private void setLevel(int levelNum) {
         if (player != null) {
-            player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(50, 50));
+            player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(200, 50));
             player.setZIndex(Integer.MAX_VALUE);
         }
         Level level = setLevelFromMap("level" + levelNum  + ".tmx");
