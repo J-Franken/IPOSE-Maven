@@ -15,6 +15,7 @@ public class PlayerComponent extends Component {
     private AnimatedTexture texture;
     private AnimationChannel animIdle, animWalk;
     private int jumps = 2;
+    private String direction;
 
     public PlayerComponent() {
 
@@ -53,11 +54,13 @@ public class PlayerComponent extends Component {
     }
 
     public void left() {
+        direction = "left";
         getEntity().setScaleX(-1);
         physics.setVelocityX(-170);
     }
 
     public void right() {
+        direction = "right";
         getEntity().setScaleX(1);
         physics.setVelocityX(170);
     }
@@ -67,6 +70,7 @@ public class PlayerComponent extends Component {
     }
 
     public void jump() {
+        direction = "jump";
         if (jumps == 0)
             return;
 
