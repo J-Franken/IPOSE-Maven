@@ -37,11 +37,10 @@ public class GameFactory implements EntityFactory {
     public Entity newPlayer(SpawnData data){
         PhysicsComponent physics = new PhysicsComponent();
         physics.setBodyType(BodyType.DYNAMIC);
-        physics.addGroundSensor(new HitBox("GROUND_SENSOR", new Point2D(16 , 38), BoundingShape.box(6, 8)));
+        physics.addGroundSensor(new HitBox("GROUND_SENSOR", new Point2D(16 , 38), BoundingShape.box(10, 10)));
 
         return FXGL.entityBuilder()
                 .type(EntityTypes.PLAYER)
-                .from(data)
                 .bbox(new HitBox(new Point2D(5, 5), BoundingShape.circle(12)))
                 .bbox(new HitBox(new Point2D(10, 25), BoundingShape.box(10, 10)))
                 .with(physics)

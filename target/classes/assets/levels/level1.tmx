@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.0.1" orientation="orthogonal" renderorder="right-down" width="15" height="10" tilewidth="70" tileheight="70" nextobjectid="20">
+ <tileset firstgid="1" name="tiles_spritesheet" tilewidth="70" tileheight="70" spacing="2" tilecount="156" columns="12">
+  <image source="tiles_spritesheet.png" width="914" height="936"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="15" height="10">
+  <data encoding="csv">
+153,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+153,2,0,0,69,57,45,0,0,0,0,0,0,0,0,
+153,10,0,0,0,0,0,0,0,0,0,0,0,0,0,
+153,153,0,0,0,0,0,0,15,3,3,27,0,0,0,
+153,153,0,0,0,0,0,0,0,0,0,0,0,0,0,
+153,153,0,0,0,0,0,0,0,0,0,0,0,0,116,
+153,153,0,0,0,0,0,0,15,3,3,27,0,116,153,
+153,153,0,0,69,81,57,0,0,0,0,0,0,153,153,
+153,153,0,0,0,0,0,0,0,0,0,0,0,153,153,
+153,153,10,105,0,0,0,129,105,0,0,0,129,153,153
+</data>
+ </layer>
+ <objectgroup name="Object Layer 1">
+  <object id="1" type="platform" x="280" y="99" width="209" height="40"/>
+  <object id="2" type="platform" x="560.5" y="209" width="282" height="40"/>
+  <object id="3" type="platform" x="557" y="419" width="282" height="40"/>
+  <object id="4" type="platform" x="279" y="520" width="211" height="40"/>
+  <object id="5" type="platform" x="140" y="631" width="139" height="67"/>
+  <object id="6" type="platform" x="489.5" y="631" width="139" height="66"/>
+  <object id="7" type="platform" x="840.5" y="631" width="68" height="67"/>
+  <object id="8" type="platform" x="910" y="422" width="68" height="272"/>
+  <object id="9" type="platform" x="981" y="348" width="68" height="141"/>
+  <object id="10" type="platform" x="69" y="141" width="68" height="558"/>
+  <object id="11" type="platform" x="0" y="1" width="68" height="698"/>
+  <object id="12" type="coin" x="281" y="421" width="68" height="68"/>
+  <object id="13" type="coin" x="350" y="421" width="68" height="68"/>
+  <object id="14" type="coin" x="420" y="421" width="68" height="68"/>
+  <object id="15" type="coin" x="281" y="1" width="68" height="68"/>
+  <object id="16" type="coin" x="351" y="1" width="68" height="68"/>
+  <object id="17" type="coin" x="421" y="0" width="68" height="68"/>
+  <object id="18" type="coin" x="981" y="280" width="68" height="68"/>
+  <object id="19" type="coin" x="841" y="561" width="68" height="68"/>
+ </objectgroup>
+</map>
