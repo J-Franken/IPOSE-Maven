@@ -37,7 +37,7 @@ public class Game extends GameApplication {
     @Override
     protected void initSettings(GameSettings gameSettings) {
         gameSettings.setWidth(15 * 70);
-        gameSettings.setHeight(10 * 70);
+        gameSettings.setHeight(20 * 32);
         gameSettings.setTitle("Demo game");
         gameSettings.setVersion("1.2");
         gameSettings.setMainMenuEnabled(true);
