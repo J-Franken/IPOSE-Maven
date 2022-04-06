@@ -15,19 +15,21 @@ public class GameFactory implements EntityFactory {
 
     @Spawns("platform")
     public Entity newPlatform(SpawnData data){
+        PhysicsComponent physics = new PhysicsComponent();
         return FXGL.entityBuilder()
                 .type(EntityTypes.PLATFORM)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new CollidableComponent(true))
+                .with(physics)
                 .build();
     }
 
     @Spawns("coin")
     public Entity newCoin(SpawnData data){
         return FXGL.entityBuilder()
+                .type(EntityTypes.COIN)
                 .viewWithBBox("star.png")
                 .with(new CollidableComponent(true))
-                .type(EntityTypes.COIN)
                 .build();
     }
 
