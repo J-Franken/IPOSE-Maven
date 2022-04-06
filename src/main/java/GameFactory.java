@@ -43,7 +43,7 @@ public class GameFactory implements EntityFactory {
         return FXGL.entityBuilder()
                 .type(EntityTypes.PLAYER)
                 .bbox(new HitBox(new Point2D(5, 5), BoundingShape.circle(12)))
-                .bbox(new HitBox(new Point2D(10, 25), BoundingShape.box(10, 17)))
+                .bbox(new HitBox(new Point2D(10, 25), BoundingShape.box(10, 10)))
                 .with(physics)
                 .with(new CollidableComponent(true))
                 .with(new IrremovableComponent())
