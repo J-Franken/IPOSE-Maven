@@ -27,7 +27,7 @@ public class GameFactory implements EntityFactory {
     @Spawns("platform")
     public Entity newPlatform(SpawnData data){
         PhysicsComponent physics = new PhysicsComponent();
-        return entityBuilder()
+        return entityBuilder(data)
                 .type(EntityTypes.PLATFORM)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new CollidableComponent(true))
@@ -37,7 +37,7 @@ public class GameFactory implements EntityFactory {
 
     @Spawns("coin")
     public Entity newCoin(SpawnData data){
-        return entityBuilder()
+        return entityBuilder(data)
                 .type(EntityTypes.COIN)
                 .viewWithBBox("star.png")
                 .with(new CollidableComponent(true))
@@ -64,7 +64,7 @@ public class GameFactory implements EntityFactory {
 
     @Spawns("background")
     public Entity newBackground(SpawnData data) {
-        return entityBuilder()
+        return entityBuilder(data)
                 .view(new ScrollingBackgroundView(texture("background.png").getImage(), getAppWidth(), getAppHeight()))
                 .zIndex(-1)
                 .with(new IrremovableComponent())

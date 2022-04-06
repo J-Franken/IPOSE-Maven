@@ -50,7 +50,7 @@ public class Game extends GameApplication {
         player = null;
         nextLevel();
 
-        player = spawn("player", 200, 50);
+        player = spawn("player", 25, 400);
 
         set("player", player);
 
@@ -99,7 +99,7 @@ public class Game extends GameApplication {
     }
 
     @Override
-    protected void initPhysics(){
+    protected void initPhysics() {
         getPhysicsWorld().setGravity(0, 760);
         getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.PLAYER, EntityTypes.COIN) {
             @Override
@@ -110,7 +110,7 @@ public class Game extends GameApplication {
         });
 
         onCollisionOneTimeOnly(EntityTypes.PLAYER, EntityTypes.EXIT_TRIGGER, (player, trigger) -> {
-            nextLevel();
+            getGameScene().getViewport().fade(this::nextLevel);
         });
     }
 
@@ -149,13 +149,14 @@ public class Game extends GameApplication {
         }
 
         inc("level", +1);
+
         setLevel(geti("level"));
     }
 
 
     private void setLevel(int levelNum) {
         if (player != null) {
-            player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(200, 50));
+            player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(20, 20));
             player.setZIndex(Integer.MAX_VALUE);
         }
         Level level = setLevelFromMap("level" + levelNum  + ".tmx");
