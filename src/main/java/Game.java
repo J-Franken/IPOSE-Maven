@@ -57,18 +57,36 @@ public class Game extends GameApplication {
 
     @Override
     protected void initInput(){
-        FXGL.onKey(KeyCode.D, () -> {
-            player.translateX(5);
-        });
-        FXGL.onKey(KeyCode.A, () -> {
-            player.translateX(-5);
-        });
-        FXGL.onKey(KeyCode.W, () -> {
-            player.translateY(-5);
-        });
-        FXGL.onKey(KeyCode.S, () -> {
-            player.translateY(5);
-        });
+        getInput().addAction(new UserAction("Left") {
+            @Override
+            protected void onAction() {
+                player.getComponent(PlayerComponent.class).left();
+            }
+
+            @Override
+            protected void onActionEnd() {
+                player.getComponent(PhysicsComponent.class).setVelocityX(0);
+            }
+        }, KeyCode.A);
+
+        getInput().addAction(new UserAction("Right") {
+            @Override
+            protected void onAction() {
+                player.getComponent(PlayerComponent.class).right();
+            }
+
+            @Override
+            protected void onActionEnd() {
+                player.getComponent(PhysicsComponent.class).setVelocityX(0);
+            }
+        }, KeyCode.D);
+
+        getInput().addAction(new UserAction("Jump") {
+            @Override
+            protected void onActionBegin() {
+                player.getComponent(PlayerComponent.class).jump();
+            }
+        }, KeyCode.W);
     }
 
     @Override
