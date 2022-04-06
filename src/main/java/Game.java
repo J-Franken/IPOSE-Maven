@@ -35,7 +35,7 @@ public class Game extends GameApplication {
         gameSettings.setWidth(15 * 70);
         gameSettings.setHeight(10 * 70);
         gameSettings.setTitle("Demo game");
-        gameSettings.setVersion("1.1");
+        gameSettings.setVersion("1.2");
     }
 
     @Override
@@ -73,17 +73,17 @@ public class Game extends GameApplication {
 
     @Override
     protected void initPhysics(){
-        FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.PLAYER, EntityTypes.PLATFORM) {
+        FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.PLAYER, EntityTypes.COIN) {
         });
     }
 
     @Override
     protected void initUI(){
-        FXGL.getGameScene().setBackgroundColor(Color.DIMGRAY);
+        FXGL.getGameScene().setBackgroundColor(Color.LIGHTBLUE);
     }
 
     private void setLevel() {
-        Level level = setLevelFromMap("castle.tmx");
+        Level level = setLevelFromMap("gametest3.tmx");
     }
 
     public static void main(String[] args) {
