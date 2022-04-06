@@ -54,6 +54,9 @@ public class Game extends GameApplication {
 
         set("player", player);
 
+        spawn("background");
+
+
         Viewport viewport = getGameScene().getViewport();
         viewport.setBounds(-1500, 0, 250 * 70, getAppHeight());
         viewport.bindToEntity(player, getAppWidth() / 2, getAppHeight() / 2);
@@ -146,7 +149,6 @@ public class Game extends GameApplication {
         }
 
         inc("level", +1);
-
         setLevel(geti("level"));
     }
 
