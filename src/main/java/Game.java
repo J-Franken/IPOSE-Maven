@@ -28,7 +28,7 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class Game extends GameApplication {
 
-    private static final int MAX_LEVEL = 1;
+    private static final int MAX_LEVEL = 4;
     private static final int STARTING_LEVEL = 0;
     private Entity player;
     private int ms = 0;
