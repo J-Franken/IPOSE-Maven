@@ -37,7 +37,7 @@ public class Game extends GameApplication {
     @Override
     protected void initSettings(GameSettings gameSettings) {
         gameSettings.setWidth(15 * 70);
-        gameSettings.setHeight(10 * 70);
+        gameSettings.setHeight(20 * 32);
         gameSettings.setTitle("Demo game");
         gameSettings.setVersion("1.2");
         gameSettings.setMainMenuEnabled(true);
@@ -50,9 +50,12 @@ public class Game extends GameApplication {
         player = null;
         nextLevel();
 
-        player = spawn("player", 200, 50);
+        player = spawn("player", 25, 400);
 
         set("player", player);
+
+        spawn("background");
+
 
         Viewport viewport = getGameScene().getViewport();
         viewport.setBounds(-1500, 0, 250 * 70, getAppHeight());
@@ -96,7 +99,7 @@ public class Game extends GameApplication {
     }
 
     @Override
-    protected void initPhysics(){
+    protected void initPhysics() {
         getPhysicsWorld().setGravity(0, 760);
         getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.PLAYER, EntityTypes.COIN) {
             @Override
@@ -104,6 +107,10 @@ public class Game extends GameApplication {
                 inc("coin", +1);
                 coin.removeFromWorld();
             }
+        });
+
+        onCollisionOneTimeOnly(EntityTypes.PLAYER, EntityTypes.EXIT_TRIGGER, (player, trigger) -> {
+            getGameScene().getViewport().fade(this::nextLevel);
         });
     }
 
@@ -119,7 +126,7 @@ public class Game extends GameApplication {
         getGameScene().addUINode(coinValue);
     }
 
-    protected void onUpdate() {
+    protected void onUpdate(double tpf) {
         if (player.getY() > getAppHeight()) {
             onPlayerDied();
         }
@@ -149,7 +156,7 @@ public class Game extends GameApplication {
 
     private void setLevel(int levelNum) {
         if (player != null) {
-            player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(50, 50));
+            player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(20, 20));
             player.setZIndex(Integer.MAX_VALUE);
         }
         Level level = setLevelFromMap("level" + levelNum  + ".tmx");

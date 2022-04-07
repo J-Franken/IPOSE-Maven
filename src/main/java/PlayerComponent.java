@@ -22,7 +22,7 @@ public class PlayerComponent extends Component {
         Image image = image("girl.png");
 
         animIdle = new AnimationChannel(image, 3, 128/3, 42, Duration.seconds(1), 1, 1);
-        animWalk = new AnimationChannel(image, 3, 128/3, 42, Duration.seconds(1), 0, 2);
+        animWalk = new AnimationChannel(image, 3, 128/3, 42, Duration.seconds(0.5), 0, 2);
 
         texture = new AnimatedTexture(animIdle);
         texture.loop();

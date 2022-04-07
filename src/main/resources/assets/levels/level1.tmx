@@ -1,41 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.1" orientation="orthogonal" renderorder="right-down" width="15" height="10" tilewidth="70" tileheight="70" nextobjectid="20">
- <tileset firstgid="1" name="tiles_spritesheet" tilewidth="70" tileheight="70" spacing="2" tilecount="156" columns="12">
-  <image source="tiles_spritesheet.png" width="914" height="936"/>
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="50" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="104">
+ <tileset firstgid="1" name="TX Tileset Ground Darken" tilewidth="32" tileheight="32" tilecount="64" columns="8">
+  <image source="TX Tileset Ground Darken.png" width="256" height="256"/>
  </tileset>
- <layer name="Tile Layer 1" width="15" height="10">
+ <tileset firstgid="65" name="TX Tileset Ground" tilewidth="32" tileheight="32" tilecount="256" columns="16">
+  <image source="TX Tileset Ground.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="321" name="TX Village Props" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
+  <image source="TX Village Props.png" width="1024" height="1024"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="50" height="20">
   <data encoding="csv">
-153,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-153,2,0,0,69,57,45,0,0,0,0,0,0,0,0,
-153,10,0,0,0,0,0,0,0,0,0,0,0,0,0,
-153,153,0,0,0,0,0,0,15,3,3,27,0,0,0,
-153,153,0,0,0,0,0,0,0,0,0,0,0,0,0,
-153,153,0,0,0,0,0,0,0,0,0,0,0,0,116,
-153,153,0,0,0,0,0,0,15,3,3,27,0,116,153,
-153,153,0,0,69,81,57,0,0,0,0,0,0,153,153,
-153,153,0,0,0,0,0,0,0,0,0,0,0,153,153,
-153,153,10,105,0,0,0,129,105,0,0,0,129,153,153
+229,230,230,230,230,230,230,230,230,230,230,129,312,312,312,218,219,312,320,134,0,0,0,0,0,0,0,0,229,140,140,140,140,140,140,140,140,140,265,0,0,0,0,318,131,141,141,141,141,774,
+245,230,230,230,230,230,230,230,230,230,129,320,133,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,245,140,140,140,140,140,140,140,140,129,86,0,0,0,0,0,85,131,141,141,141,774,
+261,230,230,230,230,230,230,230,230,230,233,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,261,140,140,156,157,140,140,140,129,320,0,0,0,0,0,0,0,318,131,141,141,774,
+229,230,230,230,230,230,230,230,230,129,320,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,318,131,140,172,173,140,140,129,320,0,0,0,0,0,0,0,0,0,277,131,141,774,
+245,230,230,230,230,230,230,230,129,320,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,117,261,140,188,189,140,140,169,0,0,0,0,0,0,0,0,0,0,256,97,131,774,
+261,230,188,230,230,230,129,218,192,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,245,140,140,140,140,129,86,0,0,0,0,0,0,0,0,0,0,0,0,318,774,
+245,230,230,230,230,129,320,0,256,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,261,140,140,140,140,233,0,0,0,0,0,0,0,0,0,0,0,0,0,0,774,
+245,230,230,129,278,86,0,0,0,0,0,0,0,72,0,0,813,0,0,0,0,0,0,0,0,0,0,0,0,85,131,140,140,140,249,0,0,0,0,0,0,0,0,0,0,0,0,0,0,774,
+245,230,230,176,0,0,0,0,0,0,0,0,0,88,0,0,74,75,0,0,0,0,0,0,0,0,0,0,0,0,318,131,140,140,265,0,0,0,0,0,0,0,0,0,0,0,0,0,0,774,
+261,129,98,320,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,884,65,66,126,316,0,0,0,0,0,0,0,201,140,140,206,0,0,0,0,0,0,0,0,0,0,846,0,0,0,774,
+81,86,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,915,916,147,247,142,0,845,0,72,0,0,0,0,318,131,140,206,0,0,0,0,0,0,815,0,0,74,75,0,0,0,774,
+81,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,119,121,122,155,247,161,66,126,127,224,0,0,0,0,0,201,140,233,0,0,0,0,65,66,67,765,0,0,0,0,0,0,806,
+81,0,0,0,0,0,0,0,0,0,0,0,0,69,70,0,0,0,137,814,147,247,247,247,142,701,256,0,0,0,0,0,318,140,249,0,0,0,0,229,140,169,797,798,0,0,0,119,120,70,
+81,0,0,0,0,0,0,0,0,149,740,0,0,85,86,0,0,151,215,66,163,247,247,247,158,159,159,70,880,0,0,0,0,318,192,706,770,0,0,245,140,161,66,66,22,23,0,0,0,137,
+81,0,0,0,0,0,0,0,0,197,0,0,0,0,0,0,0,229,247,247,247,247,247,173,247,140,140,83,912,913,0,0,0,0,256,0,0,0,847,261,140,140,140,140,30,31,6,0,0,254,
+81,0,884,0,0,0,815,359,0,144,908,149,0,0,0,0,0,245,247,247,247,247,247,247,140,140,140,161,124,124,22,23,0,0,0,0,0,0,69,155,140,140,140,140,140,140,14,66,66,160,
+81,915,916,917,38,39,2,2,2,215,162,153,127,75,0,0,0,261,247,247,247,247,247,247,140,140,140,140,140,140,30,31,22,23,0,0,0,151,187,140,140,140,140,140,140,140,140,140,140,192,
+81,66,66,66,46,47,140,140,140,263,263,249,908,909,0,151,162,187,247,247,247,247,247,247,140,140,140,140,140,140,188,140,30,31,706,707,708,167,140,140,140,140,140,140,140,140,140,140,140,176,
+81,188,140,140,140,140,140,140,140,140,156,161,162,162,162,163,140,140,247,140,140,140,247,247,140,156,140,140,140,140,140,140,140,206,44,44,44,229,140,140,140,140,140,140,140,140,140,140,140,161,
+81,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,206,44,44,44,167,140,140,140,140,140,140,140,140,140,140,140,140
 </data>
  </layer>
- <objectgroup name="Object Layer 1">
-  <object id="1" type="platform" x="280" y="99" width="209" height="40"/>
-  <object id="2" type="platform" x="560.5" y="209" width="282" height="40"/>
-  <object id="3" type="platform" x="557" y="419" width="282" height="40"/>
-  <object id="4" type="platform" x="279" y="520" width="211" height="40"/>
-  <object id="5" type="platform" x="140" y="631" width="139" height="67"/>
-  <object id="6" type="platform" x="489.5" y="631" width="139" height="66"/>
-  <object id="7" type="platform" x="840.5" y="631" width="68" height="67"/>
-  <object id="8" type="platform" x="910" y="422" width="68" height="272"/>
-  <object id="9" type="platform" x="981" y="348" width="68" height="141"/>
-  <object id="10" type="platform" x="69" y="141" width="68" height="558"/>
-  <object id="11" type="platform" x="0" y="1" width="68" height="698"/>
-  <object id="12" type="coin" x="281" y="421" width="68" height="68"/>
-  <object id="13" type="coin" x="350" y="421" width="68" height="68"/>
-  <object id="14" type="coin" x="420" y="421" width="68" height="68"/>
-  <object id="15" type="coin" x="281" y="1" width="68" height="68"/>
-  <object id="16" type="coin" x="351" y="1" width="68" height="68"/>
-  <object id="17" type="coin" x="421" y="0" width="68" height="68"/>
-  <object id="18" type="coin" x="981" y="280" width="68" height="68"/>
-  <object id="19" type="coin" x="841" y="561" width="68" height="68"/>
+ <objectgroup id="2" name="Object Layer 1">
+  <object id="10" type="platform" x="5" y="544.25" width="122.5" height="31.25"/>
+  <object id="13" type="platform" x="127.636" y="544" width="64.5455" height="32.3636"/>
+  <object id="52" type="platform" x="191.875" y="512.125">
+   <polygon points="0,0 0.125,31.875 -64.25,32"/>
+  </object>
+  <object id="53" type="platform" x="193" y="512" width="190.667" height="64.6667"/>
+  <object id="54" type="platform" x="288" y="415.333" width="32.3333" height="96.3333"/>
+  <object id="55" type="platform" x="227.333" y="480.333" width="25.3333" height="31.6667"/>
+  <object id="57" type="platform" x="353" y="480" width="30.6667" height="32"/>
+  <object id="58" type="platform" x="384" y="512" width="61.3333" height="32"/>
+  <object id="59" type="platform" x="484" y="543.667" width="603.333" height="96.6667"/>
+  <object id="60" type="platform" x="0.666667" y="575.333" width="482.333" height="64.3333"/>
+  <object id="61" type="platform" x="416.333" y="383.333" width="63.3333" height="65"/>
+  <object id="62" type="platform" x="416.333" y="224.333" width="31" height="64"/>
+  <object id="63" type="platform" x="512" y="256.333" width="64.3333" height="32.3333"/>
+  <object id="64" type="platform" x="545" y="416.333" width="350" height="128"/>
+  <object id="65" type="platform" x="544.333" y="351.667" width="96" height="32"/>
+  <object id="66" type="platform" x="575.667" y="384" width="30" height="32.3333"/>
+  <object id="67" type="platform" x="640" y="287.333" width="97" height="129.333"/>
+  <object id="68" type="platform" x="738" y="288.333" width="30.3333" height="31.3333"/>
+  <object id="69" type="platform" x="737.333" y="352.333" width="62.3333" height="64"/>
+  <object id="71" type="platform" x="799.333" y="353" width="64.6667" height="30.6667"/>
+  <object id="72" type="platform" x="832" y="320.333" width="32" height="83"/>
+  <object id="73" type="platform" x="894.667" y="480.667" width="65.3333" height="64"/>
+  <object id="74" type="platform" x="960.333" y="480.667">
+   <polygon points="0,0 126.333,62 0.333333,63 0,41.6667"/>
+  </object>
+  <object id="75" type="platform" x="1087.67" y="546.667" width="96.6667" height="6"/>
+  <object id="76" type="platform" x="1184.33" y="511.333" width="415.667" height="129.333"/>
+  <object id="77" type="platform" x="1118.75" y="418.5" width="64.5" height="6.25"/>
+  <object id="78" type="platform" x="1216.75" y="480.25" width="383.5" height="31.25"/>
+  <object id="79" type="platform" x="1248" y="353.5" width="96" height="126"/>
+  <object id="80" type="platform" x="1343.5" y="415.5" width="66" height="65.5"/>
+  <object id="81" type="platform" x="1410.5" y="416.5">
+   <polygon points="0,0 59.5,29.5 94,64 -0.5,64.5"/>
+  </object>
+  <object id="82" type="platform" x="1409" y="321" width="62" height="30.5"/>
+  <object id="83" type="platform" x="1505" y="383" width="94.5" height="32.5"/>
+  <object id="84" type="platform" x="1569" y="417" width="30" height="63"/>
+  <object id="86" type="platform" x="320.5" y="417.5" width="31.25" height="7"/>
+  <object id="87" type="platform" x="290" y="683"/>
+  <object id="88" type="coin" x="385.667" y="545" width="29.6667" height="29.6667"/>
+  <object id="89" type="coin" x="417" y="192.667" width="29.3333" height="30.3333"/>
+  <object id="90" type="coin" x="1504.83" y="352.333" width="31.6667" height="30.3333"/>
+  <object id="91" type="platform" x="1089.5" y="1.5" width="30" height="464"/>
+  <object id="92" type="platform" x="1120.5" y="0" width="31.5" height="190.5"/>
+  <object id="93" type="platform" x="1058" y="2" width="29.5" height="445"/>
+  <object id="94" type="platform" x="1026.5" y="1" width="30.5" height="415.5"/>
+  <object id="95" type="platform" x="992.5" y="1" width="32.5" height="350"/>
+  <object id="96" type="platform" x="958.5" y="0.5" width="32.5" height="286"/>
+  <object id="97" type="platform" x="928.5" y="2" width="29" height="253"/>
+  <object id="98" type="platform" x="895.5" y="1" width="30.5" height="125.5"/>
+  <object id="99" type="platform" x="1472" y="127.5" width="95.5" height="31"/>
+  <object id="100" type="platform" x="1537" y="161" width="31" height="30"/>
+  <object id="102" type="platform" x="-0.25" y="350.875" width="31.5" height="192.25"/>
+  <object id="103" type="exit_trigger" x="1568.5" y="191" width="30" height="191.5"/>
  </objectgroup>
 </map>
