@@ -106,8 +106,8 @@ public class Game extends GameApplication {
 
     @Override
     protected void onPreInit() {
-        getSettings().setGlobalMusicVolume(0.25);
-        loopBGM("BGM_dash_runner.wav");
+        getSettings().setGlobalMusicVolume(0.50);
+        loopBGM("dungeon.wav");
     }
 
     @Override
