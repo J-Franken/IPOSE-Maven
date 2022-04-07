@@ -19,12 +19,8 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
-import com.almasb.fxgl.cutscene.Cutscene;
 
 import java.awt.*;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
@@ -32,15 +28,18 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class Game extends GameApplication {
 
-    private static final int MAX_LEVEL = 4;
+    private static final int MAX_LEVEL = 1;
     private static final int STARTING_LEVEL = 0;
     private Entity player;
+    private int ms = 0;
+    private int sec = 0;
+    private int min = 0;
 
     @Override
     protected void initSettings(GameSettings gameSettings) {
         gameSettings.setWidth(15 * 70);
         gameSettings.setHeight(20 * 32);
-        gameSettings.setTitle("Demo game");
+        gameSettings.setTitle("A Way Out");
         gameSettings.setVersion("1.2");
         gameSettings.setMainMenuEnabled(true);
     }
@@ -52,7 +51,7 @@ public class Game extends GameApplication {
         player = null;
         nextLevel();
 
-        player = spawn("player", 25, 450);
+        player = spawn("player", 25, 400);
 
         set("player", player);
 
@@ -68,7 +67,7 @@ public class Game extends GameApplication {
 
     @Override
     protected void initInput(){
-        getInput().addAction(new UserAction("left") {
+        getInput().addAction(new UserAction("Left") {
             @Override
             protected void onAction() {
                 player.getComponent(PlayerComponent.class).left();
@@ -80,7 +79,7 @@ public class Game extends GameApplication {
             }
         }, KeyCode.A, VirtualButton.LEFT);
 
-        getInput().addAction(new UserAction("right") {
+        getInput().addAction(new UserAction("Right") {
             @Override
             protected void onAction() {
                 player.getComponent(PlayerComponent.class).right();
@@ -92,7 +91,7 @@ public class Game extends GameApplication {
             }
         }, KeyCode.D, VirtualButton.RIGHT);
 
-        getInput().addAction(new UserAction("jump") {
+        getInput().addAction(new UserAction("Jump") {
             @Override
             protected void onActionBegin() {
                 player.getComponent(PlayerComponent.class).jump();
@@ -111,14 +110,6 @@ public class Game extends GameApplication {
             }
         });
 
-        onCollisionOneTimeOnly(EntityTypes.PLAYER, EntityTypes.CUTSCENE, (player, cutscene) -> {
-            getDialog();
-        });
-
-        onCollision(EntityTypes.PLAYER, EntityTypes.OBSTACLE, (player, obstacle) -> {
-            onPlayerDied();
-        });
-
         onCollisionOneTimeOnly(EntityTypes.PLAYER, EntityTypes.EXIT_TRIGGER, (player, trigger) -> {
             getGameScene().getViewport().fade(this::nextLevel);
         });
@@ -126,13 +117,33 @@ public class Game extends GameApplication {
 
     @Override
     protected void initUI(){
+        getGameScene().setBackgroundColor(Color.LIGHTBLUE);
         javafx.scene.control.Label coinValue = new Label("Stars:");
+        javafx.scene.control.Label timer = new Label("Time:");
+        coinValue.setStyle("-fx-text-fill: white");
+        timer.setStyle("-fx-text-fill: white");
         coinValue.setTranslateX(20);
         coinValue.setTranslateY(20);
+        timer.setTranslateX(60);
+        timer.setTranslateY(20);
+
+        getGameTimer().runAtInterval(() -> {
+            ms++;
+            if (ms == 60){
+                ms = 0;
+                sec++;
+            }
+            if (sec == 60){
+                sec = 0;
+                min++;
+            }
+            timer.setText("Time: " + min + ":" + sec+ ":" + ms);
+        }, Duration.millis(1));
 
         coinValue.textProperty().bind(getWorldProperties().intProperty("coin").asString());
 
         getGameScene().addUINode(coinValue);
+        getGameScene().addUINode(timer);
     }
 
     protected void onUpdate(double tpf) {
@@ -150,34 +161,32 @@ public class Game extends GameApplication {
         setLevel(geti("level"));
     }
 
-    public void getDialog(){
-        getDialogService().showMessageBox("Let's get outta here!", () -> {
-        });
-    }
-
 
     private void nextLevel() {
         if (geti("level") == MAX_LEVEL) {
-            StringBuilder builder = new StringBuilder();
-            builder.append("You found a way out!!\n\n");
-            builder.append("You have reached the end of the game!\n\n")
-                    .append("Total Time: ")
-                    .append(FXGL.geti("coin"))
-                    .append("\nNumber of Stars: ")
-                    .append(FXGL.geti("coin"));
-            FXGL.getDialogService().showMessageBox(builder.toString(), () -> FXGL.getGameController().gotoMainMenu());
-            return;
+            createScoreboard();
+        } else {
+            inc("level", +1);
+            setLevel(geti("level"));
         }
+    }
 
-        inc("level", +1);
-
-        setLevel(geti("level"));
+    public void createScoreboard(){
+        StringBuilder builder = new StringBuilder();
+        builder.append("You found a way out!!\n\n")
+                .append("Total Time: " + min + ":" + sec+ ":" + ms)
+                .append(FXGL.geti("coin"))
+                .append("\nNumber of Stars: \t")
+                .append(FXGL.geti("coin"))
+                .append("\n\nEnter your name to join the scoreboard:");
+        FXGL.getDialogService().showInputBox(builder.toString(), name -> FXGL.getGameController().gotoMainMenu());
+        return;
     }
 
 
     private void setLevel(int levelNum) {
         if (player != null) {
-            player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(25, 450));
+            player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(20, 20));
             player.setZIndex(Integer.MAX_VALUE);
         }
         Level level = setLevelFromMap("level" + levelNum  + ".tmx");
