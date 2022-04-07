@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.1" orientation="orthogonal" renderorder="right-down" width="50" height="20" tilewidth="32" tileheight="32" nextobjectid="97">
+<map version="1.0" tiledversion="1.0.1" orientation="orthogonal" renderorder="right-down" width="50" height="20" tilewidth="32" tileheight="32" nextobjectid="98">
  <tileset firstgid="1" name="TX Tileset Ground" tilewidth="32" tileheight="32" tilecount="256" columns="16">
   <image source="../../Downloads/Pixel Art Platformer - Village Props v2.1.0/Texture/TX Tileset Ground.png" width="512" height="512"/>
  </tileset>
@@ -61,15 +61,13 @@
   <object id="67" type="platform" x="1024.5" y="578.333" width="162" height="29.3333"/>
   <object id="68" type="platform" x="1190" y="482.333" width="57" height="29.3333"/>
   <object id="69" type="platform" x="1217.96" y="482.568" width="124.492" height="29.3333" rotation="90.2822"/>
-  <object id="70" type="platform" x="1312.7" y="385.497" width="29.9757" height="64.3477" rotation="90.2822"/>
+  <object id="70" type="platform" x="1310.37" y="385.497" width="29.9757" height="64.3477" rotation="90.2822"/>
   <object id="71" type="platform" x="1341.5" y="320.833" width="95.0094" height="29.3333" rotation="90.2822"/>
-  <object id="72" type="platform" x="1440.5" y="256.333" width="95.0094" height="29.3333" rotation="90.2822"/>
-  <object id="73" type="platform" x="1501.5" y="193.333" width="67.0097" height="29.3333" rotation="90.2822"/>
-  <object id="74" type="platform" x="1404.54" y="193.315" width="67.0097" height="29.3333" rotation="360.201"/>
-  <object id="75" type="platform" x="1340.28" y="193.322" width="24.0201" height="29.3333" rotation="90.2822"/>
-  <object id="77" type="platform" x="1502.98" y="417.163" width="60.5098" height="96.3276" rotation="90.2822"/>
-  <object id="78" type="platform" x="1503.25" y="387.082" width="28.5077" height="127.835" rotation="90.2822"/>
-  <object id="79" type="platform" x="1470.49" y="256.333" width="24.0201" height="29.3333" rotation="90.2822"/>
+  <object id="72" type="platform" x="1440.34" y="287.323" width="64.0196" height="29.3333" rotation="90.2822"/>
+  <object id="74" type="platform" x="1404.54" y="193.315" width="196.324" height="29.3333" rotation="360.201"/>
+  <object id="75" type="platform" x="1342.28" y="192.322" width="24.0201" height="29.3333" rotation="90.2822"/>
+  <object id="78" type="platform" x="1505.25" y="385.416" width="28.5077" height="127.835" rotation="90.2822"/>
+  <object id="79" type="platform" x="1472.83" y="256.345" width="30.6801" height="62.0029" rotation="90.2822"/>
   <object id="80" type="platform" x="1535.75" y="323.422" width="28.5077" height="95.3379" rotation="90.2822"/>
   <object id="81" type="platform" x="1565.84" y="416.622" width="28.5077" height="65.3837" rotation="-179.781"/>
   <object id="82" type="platform" x="1536.75" y="513.582" width="28.5077" height="127.835" rotation="90.2822"/>
@@ -77,8 +75,7 @@
   <object id="84" type="platform" x="1376.55" y="577.818" width="30.007" height="97.9244" rotation="-179.792"/>
   <object id="85" type="platform" x="1346.75" y="480.267" width="28.5077" height="68.3382" rotation="90.2822"/>
   <object id="86" type="platform" x="1375.71" y="320.653" width="28.5077" height="32.3017" rotation="90.2822"/>
-  <object id="87" type="platform" x="1501.5" y="193.667" width="96.0002" height="29.3333" rotation="360.201"/>
-  <object id="88" type="platform" x="1564.85" y="512.554" width="28.5077" height="64.6385" rotation="-179.781"/>
+  <object id="88" type="platform" x="1564.74" y="540.54" width="28.5077" height="92.6249" rotation="-179.781"/>
   <object id="89" type="platform" x="1594.25" y="447.681" width="28.5077" height="30.8926" rotation="-179.781"/>
   <object id="90" type="platform" x="867.333" y="415.667" width="27.3333" height="29.3333"/>
   <object id="93" type="platform" x="802.333" y="321.833" width="27.3333" height="29.3333"/>
@@ -87,6 +84,7 @@
     <property name="patrolEndX" type="int" value="732"/>
    </properties>
   </object>
-  <object id="96" type="platform" x="1279.51" y="384.826" width="93.9725" height="30.0501" rotation="90.2822"/>
+  <object id="96" type="platform" x="1279.35" y="418.517" width="60.2816" height="30.0501" rotation="90.2822"/>
+  <object id="97" type="platform" x="1504.5" y="412.973" width="66.1853" height="97.0964" rotation="90.2822"/>
  </objectgroup>
 </map>
