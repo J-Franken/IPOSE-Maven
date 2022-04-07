@@ -20,6 +20,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
+import javax.swing.*;
+import javax.xml.namespace.QName;
 import java.awt.*;
 import java.util.Map;
 
@@ -28,12 +30,13 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class Game extends GameApplication {
 
-    private static final int MAX_LEVEL = 1;
+    private static final int MAX_LEVEL = 4;
     private static final int STARTING_LEVEL = 0;
     private Entity player;
     private int ms = 0;
     private int sec = 0;
     private int min = 0;
+    private String name;
 
     @Override
     protected void initSettings(GameSettings gameSettings) {
@@ -173,14 +176,36 @@ public class Game extends GameApplication {
 
     public void createScoreboard(){
         StringBuilder builder = new StringBuilder();
+        String naam1 = "Merdan";
+        String naam2 = "Jamy";
+        String naam3 = "Mulan";
+        int min1 = 0;
+        int sec1 = 20;
+        int ms1 = 30;
+        int min2 = 0;
+        int sec2 = 21;
+        int ms2 = 31;
+        int min3 = 0;
+        int sec3 = 22;
+        int ms3 = 32;
+        String[][] scoreBoard;
+        scoreBoard = new String[][]{{ naam1 , min1 + ":" + sec1+ ":" + ms1}, {naam2 , min2 + ":" + sec2+ ":" + ms2}, {naam3 , min3 + ":" + sec3+ ":" + ms3}};
+
         builder.append("You found a way out!!\n\n")
                 .append("Total Time: " + min + ":" + sec+ ":" + ms)
-                .append(FXGL.geti("coin"))
                 .append("\nNumber of Stars: \t")
-                .append(FXGL.geti("coin"))
-                .append("\n\nEnter your name to join the scoreboard:");
-        FXGL.getDialogService().showInputBox(builder.toString(), name -> FXGL.getGameController().gotoMainMenu());
-        return;
+                .append(geti("coin"))
+                .append("\n\nScoreboard:\n");
+        int nummerN = 1;
+        for (int i = 0; i < scoreBoard.length; ++i) {
+            builder.append("nummer "+ nummerN +" ");
+            nummerN++;
+            for (int j = 0; j < scoreBoard[i].length; ++j) {
+                builder.append(scoreBoard[i][j] + "\n");
+            }
+        }
+        builder.append("\n\nEnter your name to join the scoreboard:");
+        getDialogService().showInputBox(builder.toString(), name -> getGameController().gotoMainMenu());
     }
 
 
