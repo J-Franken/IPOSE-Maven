@@ -19,8 +19,11 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
+import java.awt.*;
+
 import static com.almasb.fxgl.dsl.FXGL.*;
 
+import javafx.scene.paint.Color;
 
 public class GameFactory implements EntityFactory {
 
@@ -80,21 +83,18 @@ public class GameFactory implements EntityFactory {
                 .build();
     }
 
-    @Spawns("obstacle")
-    public Entity newObstacle(SpawnData data){
+    @Spawns("enemy")
+    public Entity newEnemySpider(SpawnData data) {
+        int patrolEndX = data.get("patrolEndX");
         return entityBuilder(data)
-                .type(EntityTypes.OBSTACLE)
-                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
-                .with(new CollidableComponent(true))
-                .build();
-    }
+                .type(EntityTypes.ENEMY)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(232 /4 , 390 /4)))
 
-    @Spawns("cutscene")
-    public Entity newCutscene(SpawnData data){
-        return entityBuilder(data)
-                .type(EntityTypes.CUTSCENE)
-                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+
+                .with(new EnemySpiderComponent(patrolEndX))
                 .with(new CollidableComponent(true))
                 .build();
+
     }
 }
