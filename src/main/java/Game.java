@@ -19,12 +19,8 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
-import com.almasb.fxgl.cutscene.Cutscene;
 
 import java.awt.*;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
@@ -68,7 +64,7 @@ public class Game extends GameApplication {
 
     @Override
     protected void initInput(){
-        getInput().addAction(new UserAction("left") {
+        getInput().addAction(new UserAction("Left") {
             @Override
             protected void onAction() {
                 player.getComponent(PlayerComponent.class).left();
@@ -80,7 +76,7 @@ public class Game extends GameApplication {
             }
         }, KeyCode.A, VirtualButton.LEFT);
 
-        getInput().addAction(new UserAction("right") {
+        getInput().addAction(new UserAction("Right") {
             @Override
             protected void onAction() {
                 player.getComponent(PlayerComponent.class).right();
@@ -92,7 +88,7 @@ public class Game extends GameApplication {
             }
         }, KeyCode.D, VirtualButton.RIGHT);
 
-        getInput().addAction(new UserAction("jump") {
+        getInput().addAction(new UserAction("Jump") {
             @Override
             protected void onActionBegin() {
                 player.getComponent(PlayerComponent.class).jump();
@@ -158,20 +154,23 @@ public class Game extends GameApplication {
 
     private void nextLevel() {
         if (geti("level") == MAX_LEVEL) {
-            StringBuilder builder = new StringBuilder();
-            builder.append("You found a way out!!\n\n");
-            builder.append("You have reached the end of the game!\n\n")
-                    .append("Total Time: ")
-                    .append(FXGL.geti("coin"))
-                    .append("\nNumber of Stars: ")
-                    .append(FXGL.geti("coin"));
-            FXGL.getDialogService().showMessageBox(builder.toString(), () -> FXGL.getGameController().gotoMainMenu());
-            return;
+            createScoreboard();
+        } else {
+            inc("level", +1);
+            setLevel(geti("level"));
         }
+    }
 
-        inc("level", +1);
-
-        setLevel(geti("level"));
+    public void createScoreboard(){
+        StringBuilder builder = new StringBuilder();
+        builder.append("You found a way out!!\n\n")
+                .append("Total Time: \t\t\t")
+                .append(FXGL.geti("coin"))
+                .append("\nNumber of Stars: \t")
+                .append(FXGL.geti("coin"))
+                .append("\n\nEnter your name to join the scoreboard:");
+        FXGL.getDialogService().showInputBox(builder.toString(), name -> FXGL.getGameController().gotoMainMenu());
+        return;
     }
 
 
