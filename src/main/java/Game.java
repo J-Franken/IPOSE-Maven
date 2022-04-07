@@ -19,8 +19,12 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+import com.almasb.fxgl.cutscene.Cutscene;
 
 import java.awt.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
@@ -64,7 +68,7 @@ public class Game extends GameApplication {
 
     @Override
     protected void initInput(){
-        getInput().addAction(new UserAction("Left") {
+        getInput().addAction(new UserAction("left") {
             @Override
             protected void onAction() {
                 player.getComponent(PlayerComponent.class).left();
@@ -76,7 +80,7 @@ public class Game extends GameApplication {
             }
         }, KeyCode.A, VirtualButton.LEFT);
 
-        getInput().addAction(new UserAction("Right") {
+        getInput().addAction(new UserAction("right") {
             @Override
             protected void onAction() {
                 player.getComponent(PlayerComponent.class).right();
@@ -88,7 +92,7 @@ public class Game extends GameApplication {
             }
         }, KeyCode.D, VirtualButton.RIGHT);
 
-        getInput().addAction(new UserAction("Jump") {
+        getInput().addAction(new UserAction("jump") {
             @Override
             protected void onActionBegin() {
                 player.getComponent(PlayerComponent.class).jump();
@@ -105,6 +109,10 @@ public class Game extends GameApplication {
                 inc("coin", +1);
                 coin.removeFromWorld();
             }
+        });
+
+        onCollisionOneTimeOnly(EntityTypes.PLAYER, EntityTypes.CUTSCENE, (player, cutscene) -> {
+            getDialog();
         });
 
         onCollision(EntityTypes.PLAYER, EntityTypes.OBSTACLE, (player, obstacle) -> {
@@ -140,6 +148,11 @@ public class Game extends GameApplication {
 
     public void onPlayerDied() {
         setLevel(geti("level"));
+    }
+
+    public void getDialog(){
+        getDialogService().showMessageBox("Let's get outta here!", () -> {
+        });
     }
 
 

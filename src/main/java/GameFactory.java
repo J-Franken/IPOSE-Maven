@@ -88,4 +88,13 @@ public class GameFactory implements EntityFactory {
                 .with(new CollidableComponent(true))
                 .build();
     }
+
+    @Spawns("cutscene")
+    public Entity newCutscene(SpawnData data){
+        return entityBuilder(data)
+                .type(EntityTypes.CUTSCENE)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
 }

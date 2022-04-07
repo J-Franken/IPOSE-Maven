@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.1" orientation="orthogonal" renderorder="right-down" width="50" height="20" tilewidth="32" tileheight="32" nextobjectid="396">
+<map version="1.0" tiledversion="1.0.1" orientation="orthogonal" renderorder="right-down" width="50" height="20" tilewidth="32" tileheight="32" nextobjectid="399">
  <tileset firstgid="1" name="TX Tileset Ground Darken" tilewidth="32" tileheight="32" tilecount="64" columns="8">
   <image source="TX Tileset Ground Darken.png" width="256" height="256"/>
  </tileset>
@@ -214,5 +214,6 @@
   <object id="393" type="platform" x="189.655" y="513.949" width="2.62555" height="10.4084" rotation="306.682"/>
   <object id="394" type="platform" x="185.176" y="516.118" width="2.62555" height="10.4084" rotation="306.682"/>
   <object id="395" type="platform" x="175.06" y="521.38" width="2.34424" height="10.4084" rotation="306.682"/>
+  <object id="396" type="cutscene" x="40" y="529" width="12" height="13"/>
  </objectgroup>
 </map>
