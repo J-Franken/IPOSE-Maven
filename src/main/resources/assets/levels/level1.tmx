@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="50" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="104">
+<map version="1.0" tiledversion="1.0.1" orientation="orthogonal" renderorder="right-down" width="50" height="20" tilewidth="32" tileheight="32" nextobjectid="109">
  <tileset firstgid="1" name="TX Tileset Ground Darken" tilewidth="32" tileheight="32" tilecount="64" columns="8">
   <image source="TX Tileset Ground Darken.png" width="256" height="256"/>
  </tileset>
@@ -9,7 +9,7 @@
  <tileset firstgid="321" name="TX Village Props" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
   <image source="TX Village Props.png" width="1024" height="1024"/>
  </tileset>
- <layer id="1" name="Tile Layer 1" width="50" height="20">
+ <layer name="Tile Layer 1" width="50" height="20">
   <data encoding="csv">
 229,230,230,230,230,230,230,230,230,230,230,129,312,312,312,218,219,312,320,134,0,0,0,0,0,0,0,0,229,140,140,140,140,140,140,140,140,140,265,0,0,0,0,318,131,141,141,141,141,774,
 245,230,230,230,230,230,230,230,230,230,129,320,133,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,245,140,140,140,140,140,140,140,140,129,86,0,0,0,0,0,85,131,141,141,141,774,
@@ -33,7 +33,7 @@
 81,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,206,44,44,44,167,140,140,140,140,140,140,140,140,140,140,140,140
 </data>
  </layer>
- <objectgroup id="2" name="Object Layer 1">
+ <objectgroup name="Object Layer 1">
   <object id="10" type="platform" x="5" y="544.25" width="122.5" height="31.25"/>
   <object id="13" type="platform" x="127.636" y="544" width="64.5455" height="32.3636"/>
   <object id="52" type="platform" x="191.875" y="512.125">
@@ -74,7 +74,6 @@
   <object id="83" type="platform" x="1505" y="383" width="94.5" height="32.5"/>
   <object id="84" type="platform" x="1569" y="417" width="30" height="63"/>
   <object id="86" type="platform" x="320.5" y="417.5" width="31.25" height="7"/>
-  <object id="87" type="platform" x="290" y="683"/>
   <object id="88" type="coin" x="385.667" y="545" width="29.6667" height="29.6667"/>
   <object id="89" type="coin" x="417" y="192.667" width="29.3333" height="30.3333"/>
   <object id="90" type="coin" x="1504.83" y="352.333" width="31.6667" height="30.3333"/>
@@ -90,5 +89,10 @@
   <object id="100" type="platform" x="1537" y="161" width="31" height="30"/>
   <object id="102" type="platform" x="-0.25" y="350.875" width="31.5" height="192.25"/>
   <object id="103" type="exit_trigger" x="1568.5" y="191" width="30" height="191.5"/>
+  <object id="106" type="enemy" x="672.667" y="254" width="32" height="32.6667">
+   <properties>
+    <property name="patrolEndX" type="int" value="732"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
