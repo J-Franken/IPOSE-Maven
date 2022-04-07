@@ -33,6 +33,9 @@ public class Game extends GameApplication {
     private static final int MAX_LEVEL = 4;
     private static final int STARTING_LEVEL = 0;
     private Entity player;
+    private int ms = 0;
+    private int sec = 0;
+    private int min = 0;
 
     @Override
     protected void initSettings(GameSettings gameSettings) {
@@ -118,12 +121,31 @@ public class Game extends GameApplication {
     protected void initUI(){
         getGameScene().setBackgroundColor(Color.LIGHTBLUE);
         javafx.scene.control.Label coinValue = new Label("Stars:");
+        javafx.scene.control.Label timer = new Label("Time:");
+        coinValue.setStyle("-fx-text-fill: white");
+        timer.setStyle("-fx-text-fill: white");
         coinValue.setTranslateX(20);
         coinValue.setTranslateY(20);
+        timer.setTranslateX(60);
+        timer.setTranslateY(20);
+
+        getGameTimer().runAtInterval(() -> {
+            ms++;
+            if (ms == 60){
+                ms = 0;
+                sec++;
+            }
+            if (sec == 60){
+                sec = 0;
+                min++;
+            }
+            timer.setText("Time: " + min + ":" + sec+ ":" + ms);
+        }, Duration.millis(1));
 
         coinValue.textProperty().bind(getWorldProperties().intProperty("coin").asString());
 
         getGameScene().addUINode(coinValue);
+        getGameScene().addUINode(timer);
     }
 
     protected void onUpdate(double tpf) {
