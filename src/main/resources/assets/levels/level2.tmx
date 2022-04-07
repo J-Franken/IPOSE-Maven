@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="50" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="54">
+<map version="1.0" tiledversion="1.0.1" orientation="orthogonal" renderorder="right-down" width="50" height="20" tilewidth="32" tileheight="32" nextobjectid="67">
  <tileset firstgid="1" name="TX Tileset Ground" tilewidth="32" tileheight="32" tilecount="256" columns="16">
   <image source="TX Tileset Ground.png" width="512" height="512"/>
  </tileset>
  <tileset firstgid="257" name="TX Village Props" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
   <image source="TX Village Props.png" width="1024" height="1024"/>
  </tileset>
- <layer id="1" name="Tile Layer 1" width="50" height="20">
+ <layer name="Tile Layer 1" width="50" height="20">
   <data encoding="csv">
 181,166,166,166,166,166,166,166,166,166,35,0,0,0,0,0,0,0,0,119,120,166,166,166,105,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,247,166,166,124,166,166,166,166,109,678,
 181,92,166,166,166,166,166,166,92,19,0,0,0,0,0,0,0,0,0,0,0,75,166,166,112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,247,166,166,166,166,166,166,166,710,
@@ -30,7 +30,7 @@
 33,678,17,18,18,18,18,18,18,18,18,18,53,0,0,0,0,0,0,18,18,18,18,18,18,18,18,0,117,0,0,0,0,0,0,0,18,18,18,18,18,18,18,18,18,18,18,18,18,18
 </data>
  </layer>
- <objectgroup id="2" name="Object Layer 1">
+ <objectgroup name="Object Layer 1">
   <object id="3" type="platform" x="0" y="286.667" width="30" height="351.333"/>
   <object id="4" type="platform" x="32.3333" y="545" width="128" height="33.9997"/>
   <object id="5" type="platform" x="160.667" y="513" width="128" height="33.9997"/>
@@ -80,5 +80,16 @@
   <object id="51" type="platform" x="737.333" y="94.3335" width="63.3333" height="96.6664"/>
   <object id="52" type="coin" x="1375.33" y="288" width="32.6667" height="32.6667"/>
   <object id="53" type="platform" x="1248.67" y="226" width="62.667" height="126"/>
+  <object id="54" type="obstacle" x="608" y="556" width="31" height="16"/>
+  <object id="55" type="obstacle" x="639.5" y="524" width="31" height="16"/>
+  <object id="56" type="obstacle" x="671.5" y="496" width="31" height="16"/>
+  <object id="57" type="obstacle" x="705.5" y="463" width="31" height="16"/>
+  <object id="58" type="obstacle" x="1151.5" y="460" width="95" height="16"/>
+  <object id="61" type="obstacle" x="1312.5" y="526" width="63" height="16"/>
+  <object id="62" type="obstacle" x="1378.5" y="494" width="63" height="16"/>
+  <object id="63" type="obstacle" x="1440.5" y="463" width="32" height="16"/>
+  <object id="64" type="obstacle" x="1283" y="559" width="32" height="16"/>
+  <object id="65" type="obstacle" x="1249" y="492" width="32" height="16"/>
+  <object id="66" type="obstacle" x="1184" y="174" width="63" height="17"/>
  </objectgroup>
 </map>
