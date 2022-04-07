@@ -32,7 +32,7 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class Game extends GameApplication {
 
-    private static final int MAX_LEVEL = 1;
+    private static final int MAX_LEVEL = 4;
     private static final int STARTING_LEVEL = 0;
     private Entity player;
     private int ms = 0;
@@ -110,8 +110,8 @@ public class Game extends GameApplication {
         getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.PLAYER, EntityTypes.COIN) {
             @Override
             protected void onCollision(Entity player, Entity coin) {
-                inc("coin", +1);
                 play("kaching.wav");
+                inc("coin", +1);
                 coin.removeFromWorld();
             }
         });
@@ -121,6 +121,10 @@ public class Game extends GameApplication {
         });
 
         onCollision(EntityTypes.PLAYER, EntityTypes.OBSTACLE, (player, obstacle) -> {
+            onPlayerDied();
+        });
+
+        onCollision(EntityTypes.PLAYER, EntityTypes.ENEMY, (player, enemy) -> {
             onPlayerDied();
         });
 
@@ -197,8 +201,9 @@ public class Game extends GameApplication {
                 .append("\nCollected cashbags: \t")
                 .append(FXGL.geti("coin"))
                 .append("\n\nEnter your name to join the scoreboard:");
-        FXGL.getDialogService().showInputBox(builder.toString(), name -> FXGL.getGameController().gotoMainMenu());
-        return;
+        FXGL.getDialogService().showInputBox(builder.toString(), name -> {
+            FXGL.getGameController().gotoMainMenu();
+        });
     }
 
 
