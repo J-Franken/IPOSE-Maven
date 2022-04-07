@@ -56,5 +56,6 @@ public class StartMenu extends FXGLMenu {
         getContentRoot().setBackground(new Background(mainBackground));
 
         super.getContentRoot().getChildren().add(pane);
+
     }
 }
