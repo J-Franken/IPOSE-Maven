@@ -45,6 +45,7 @@ public class Game extends GameApplication {
         gameSettings.setHeight(20 * 32);
         gameSettings.setTitle("A Way Out");
         gameSettings.setVersion("1.2");
+        gameSettings.setSceneFactory(new UISceneFactory());
         gameSettings.setMainMenuEnabled(true);
     }
 
