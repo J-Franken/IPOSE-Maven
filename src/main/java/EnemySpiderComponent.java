@@ -35,7 +35,7 @@ public class EnemySpiderComponent extends Component {
 
 
 
-            Image image = image("spider.png");
+            Image image = image("kraai.png");
 
 
             animWalk = new AnimationChannel(image, 3, 128/3, 42, Duration.seconds(0.5), 0, 2);
