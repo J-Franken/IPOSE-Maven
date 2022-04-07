@@ -105,6 +105,12 @@ public class Game extends GameApplication {
     }
 
     @Override
+    protected void onPreInit() {
+        getSettings().setGlobalMusicVolume(0.25);
+        loopBGM("BGM_dash_runner.wav");
+    }
+
+    @Override
     protected void initPhysics() {
         getPhysicsWorld().setGravity(0, 760);
         getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.PLAYER, EntityTypes.COIN) {
@@ -176,6 +182,7 @@ public class Game extends GameApplication {
 
     public void onPlayerDied() {
         setLevel(geti("level"));
+        set("coin", 0);
     }
 
     public void getDialog(){

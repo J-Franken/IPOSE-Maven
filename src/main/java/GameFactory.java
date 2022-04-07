@@ -106,10 +106,7 @@ public class GameFactory implements EntityFactory {
         int patrolEndX = data.get("patrolEndX");
         return entityBuilder(data)
                 .type(EntityTypes.ENEMY)
-                .from(data)
                 .bbox(new HitBox(BoundingShape.box(232 /4 , 390 /4)))
-
-
                 .with(new EnemySpiderComponent(patrolEndX))
                 .with(new CollidableComponent(true))
                 .build();
