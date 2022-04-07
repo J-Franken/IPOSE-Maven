@@ -79,4 +79,13 @@ public class GameFactory implements EntityFactory {
                 .with(new CollidableComponent(true))
                 .build();
     }
+
+    @Spawns("obstacle")
+    public Entity newObstacle(SpawnData data){
+        return entityBuilder(data)
+                .type(EntityTypes.OBSTACLE)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
 }
