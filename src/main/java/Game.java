@@ -28,7 +28,7 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class Game extends GameApplication {
 
-    private static final int MAX_LEVEL = 4;
+    private static final int MAX_LEVEL = 1;
     private static final int STARTING_LEVEL = 0;
     private Entity player;
 
@@ -36,7 +36,7 @@ public class Game extends GameApplication {
     protected void initSettings(GameSettings gameSettings) {
         gameSettings.setWidth(15 * 70);
         gameSettings.setHeight(20 * 32);
-        gameSettings.setTitle("Demo game");
+        gameSettings.setTitle("A Way Out");
         gameSettings.setVersion("1.2");
         gameSettings.setMainMenuEnabled(true);
     }
@@ -48,7 +48,7 @@ public class Game extends GameApplication {
         player = null;
         nextLevel();
 
-        player = spawn("player", 25, 450);
+        player = spawn("player", 25, 400);
 
         set("player", player);
 
@@ -107,10 +107,6 @@ public class Game extends GameApplication {
             }
         });
 
-        onCollision(EntityTypes.PLAYER, EntityTypes.OBSTACLE, (player, obstacle) -> {
-            onPlayerDied();
-        });
-
         onCollisionOneTimeOnly(EntityTypes.PLAYER, EntityTypes.EXIT_TRIGGER, (player, trigger) -> {
             getGameScene().getViewport().fade(this::nextLevel);
         });
@@ -118,6 +114,7 @@ public class Game extends GameApplication {
 
     @Override
     protected void initUI(){
+        getGameScene().setBackgroundColor(Color.LIGHTBLUE);
         javafx.scene.control.Label coinValue = new Label("Stars:");
         coinValue.setTranslateX(20);
         coinValue.setTranslateY(20);
@@ -145,26 +142,29 @@ public class Game extends GameApplication {
 
     private void nextLevel() {
         if (geti("level") == MAX_LEVEL) {
-            StringBuilder builder = new StringBuilder();
-            builder.append("You found a way out!!\n\n");
-            builder.append("You have reached the end of the game!\n\n")
-                    .append("Total Time: ")
-                    .append(FXGL.geti("coin"))
-                    .append("\nNumber of Stars: ")
-                    .append(FXGL.geti("coin"));
-            FXGL.getDialogService().showMessageBox(builder.toString(), () -> FXGL.getGameController().gotoMainMenu());
-            return;
+            createScoreboard();
+        } else {
+            inc("level", +1);
+            setLevel(geti("level"));
         }
+    }
 
-        inc("level", +1);
-
-        setLevel(geti("level"));
+    public void createScoreboard(){
+        StringBuilder builder = new StringBuilder();
+        builder.append("You found a way out!!\n\n")
+                .append("Total Time: \t\t\t")
+                .append(FXGL.geti("coin"))
+                .append("\nNumber of Stars: \t")
+                .append(FXGL.geti("coin"))
+                .append("\n\nEnter your name to join the scoreboard:");
+        FXGL.getDialogService().showInputBox(builder.toString(), name -> FXGL.getGameController().gotoMainMenu());
+        return;
     }
 
 
     private void setLevel(int levelNum) {
         if (player != null) {
-            player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(25, 450));
+            player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(20, 20));
             player.setZIndex(Integer.MAX_VALUE);
         }
         Level level = setLevelFromMap("level" + levelNum  + ".tmx");
