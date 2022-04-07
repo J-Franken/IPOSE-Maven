@@ -110,6 +110,7 @@ public class Game extends GameApplication {
             @Override
             protected void onCollision(Entity player, Entity coin) {
                 inc("coin", +1);
+                play("kaching.wav");
                 coin.removeFromWorld();
             }
         });
@@ -190,9 +191,9 @@ public class Game extends GameApplication {
     public void createScoreboard(){
         StringBuilder builder = new StringBuilder();
         builder.append("You found a way out!!\n\n")
-                .append("Total Time: " + min + ":" + sec+ ":" + ms)
-                .append(FXGL.geti("coin"))
-                .append("\nNumber of Stars: \t")
+                .append("\nTotal Time: \t")
+                .append(min + ":" + sec+ ":" + ms)
+                .append("\nCollected cashbags: \t")
                 .append(FXGL.geti("coin"))
                 .append("\n\nEnter your name to join the scoreboard:");
         FXGL.getDialogService().showInputBox(builder.toString(), name -> FXGL.getGameController().gotoMainMenu());
