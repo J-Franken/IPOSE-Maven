@@ -2,11 +2,9 @@ import com.almasb.fxgl.animation.Interpolators;
 import com.almasb.fxgl.app.ApplicationMode;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
-import com.almasb.fxgl.app.scene.GameView;
-import com.almasb.fxgl.app.scene.LoadingScene;
-import com.almasb.fxgl.app.scene.SceneFactory;
-import com.almasb.fxgl.app.scene.Viewport;
+import com.almasb.fxgl.app.scene.*;
 import com.almasb.fxgl.core.util.LazyValue;
+import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.components.CollidableComponent;
@@ -53,7 +51,7 @@ public class Game extends GameApplication {
         player = null;
         nextLevel();
 
-        player = spawn("player", 25, 400);
+        player = spawn("player", 25, 450);
 
         set("player", player);
 
@@ -112,6 +110,10 @@ public class Game extends GameApplication {
             }
         });
 
+        onCollision(EntityTypes.PLAYER, EntityTypes.OBSTACLE, (player, obstacle) -> {
+            onPlayerDied();
+        });
+
         onCollisionOneTimeOnly(EntityTypes.PLAYER, EntityTypes.EXIT_TRIGGER, (player, trigger) -> {
             getGameScene().getViewport().fade(this::nextLevel);
         });
@@ -119,7 +121,6 @@ public class Game extends GameApplication {
 
     @Override
     protected void initUI(){
-        getGameScene().setBackgroundColor(Color.LIGHTBLUE);
         javafx.scene.control.Label coinValue = new Label("Stars:");
         javafx.scene.control.Label timer = new Label("Time:");
         coinValue.setStyle("-fx-text-fill: white");
@@ -149,7 +150,7 @@ public class Game extends GameApplication {
     }
 
     protected void onUpdate(double tpf) {
-        if (player.getY() > getAppHeight()) {
+        if (player.getY() > getAppHeight() + 200) {
             onPlayerDied();
         }
     }
@@ -166,7 +167,14 @@ public class Game extends GameApplication {
 
     private void nextLevel() {
         if (geti("level") == MAX_LEVEL) {
-            showMessage("You found a way out!");
+            StringBuilder builder = new StringBuilder();
+            builder.append("You found a way out!!\n\n");
+            builder.append("You have reached the end of the game!\n\n")
+                    .append("Total Time: ")
+                    .append(FXGL.geti("coin"))
+                    .append("\nNumber of Stars: ")
+                    .append(FXGL.geti("coin"));
+            FXGL.getDialogService().showMessageBox(builder.toString(), () -> FXGL.getGameController().gotoMainMenu());
             return;
         }
 
@@ -178,7 +186,7 @@ public class Game extends GameApplication {
 
     private void setLevel(int levelNum) {
         if (player != null) {
-            player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(20, 20));
+            player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(25, 450));
             player.setZIndex(Integer.MAX_VALUE);
         }
         Level level = setLevelFromMap("level" + levelNum  + ".tmx");
