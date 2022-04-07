@@ -135,6 +135,7 @@ public class Game extends GameApplication {
 
         onCollision(EntityTypes.PLAYER, EntityTypes.OBSTACLE, (player, obstacle) -> {
             onPlayerDied();
+            play("scream.wav");
         });
 
         onCollision(EntityTypes.PLAYER, EntityTypes.ENEMY, (player, enemy) -> {
