@@ -28,7 +28,7 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class Game extends GameApplication {
 
-    private static final int MAX_LEVEL = 4;
+    private static final int MAX_LEVEL = 1;
     private static final int STARTING_LEVEL = 0;
     private Entity player;
     private int ms = 0;
@@ -186,7 +186,7 @@ public class Game extends GameApplication {
     public void createScoreboard(){
         StringBuilder builder = new StringBuilder();
         builder.append("You found a way out!!\n\n")
-                .append("Total Time: \t\t\t")
+                .append("Total Time: " + min + ":" + sec+ ":" + ms)
                 .append(FXGL.geti("coin"))
                 .append("\nNumber of Stars: \t")
                 .append(FXGL.geti("coin"))
