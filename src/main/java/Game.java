@@ -50,7 +50,7 @@ public class Game extends GameApplication {
         player = null;
         nextLevel();
 
-        player = spawn("player", 25, 400);
+        player = spawn("player", 25, 450);
 
         set("player", player);
 
@@ -109,6 +109,10 @@ public class Game extends GameApplication {
             }
         });
 
+        onCollision(EntityTypes.PLAYER, EntityTypes.OBSTACLE, (player, obstacle) -> {
+            onPlayerDied();
+        });
+
         onCollisionOneTimeOnly(EntityTypes.PLAYER, EntityTypes.EXIT_TRIGGER, (player, trigger) -> {
             getGameScene().getViewport().fade(this::nextLevel);
         });
@@ -116,7 +120,6 @@ public class Game extends GameApplication {
 
     @Override
     protected void initUI(){
-        getGameScene().setBackgroundColor(Color.LIGHTBLUE);
         javafx.scene.control.Label coinValue = new Label("Stars:");
         coinValue.setTranslateX(20);
         coinValue.setTranslateY(20);
@@ -156,7 +159,7 @@ public class Game extends GameApplication {
 
     private void setLevel(int levelNum) {
         if (player != null) {
-            player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(20, 20));
+            player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(25, 450));
             player.setZIndex(Integer.MAX_VALUE);
         }
         Level level = setLevelFromMap("level" + levelNum  + ".tmx");
