@@ -120,7 +120,14 @@ public class Game extends GameApplication {
                 inc("coin", +1);
                 coin.removeFromWorld();
             }
+
+
+
         });
+
+
+
+
 
         onCollisionOneTimeOnly(EntityTypes.PLAYER, EntityTypes.CUTSCENE, (player, cutscene) -> {
             getDialog();
@@ -132,6 +139,7 @@ public class Game extends GameApplication {
 
         onCollision(EntityTypes.PLAYER, EntityTypes.ENEMY, (player, enemy) -> {
             onPlayerDied();
+            play("kraai.wav");
         });
 
         onCollisionOneTimeOnly(EntityTypes.PLAYER, EntityTypes.EXIT_TRIGGER, (player, trigger) -> {
