@@ -1,6 +1,7 @@
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.*;
+import com.almasb.fxgl.audio.Music;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.level.Level;
@@ -72,6 +73,8 @@ public class Game extends GameApplication {
     @Override
     protected void initGame(){
         getGameWorld().addEntityFactory(new GameFactory());
+        getAudioPlayer().stopAllMusic();
+        loopBGM("dungeon.wav");
 
         player = null;
         nextLevel();
@@ -127,7 +130,7 @@ public class Game extends GameApplication {
     @Override
     protected void onPreInit() {
         getSettings().setGlobalMusicVolume(0.25);
-        loopBGM("dungeon.wav");
+        loopBGM("maintheme.wav");
     }
 
     @Override
