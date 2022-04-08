@@ -1,0 +1,3 @@
+1: Merdan Moneybags: 3 Time: 0,20,20
+2: Jamy Moneybags: 2 Time: 0,25,20
+3: Mulan Moneybags: 1 Time: 0,30,20
