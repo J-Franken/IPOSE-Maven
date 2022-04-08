@@ -22,6 +22,12 @@ import javafx.util.Builder;
 import javafx.util.Duration;
 import javafx.scene.control.ButtonBase;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
 import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -239,58 +245,225 @@ public class Game extends GameApplication {
             }
 
         });
-
     }
+    public void schrijfNaam1() throws IOException {
+        String filePath = "src/main/Namen.txt";
+        Scanner sc = new Scanner(new File(filePath));
+        StringBuffer buffer = new StringBuffer();
+        while (sc.hasNextLine()) {
+            buffer.append(sc.nextLine()+System.lineSeparator());
+        }
+        String fileContents = buffer.toString();
+        System.out.println("Contents of the file: "+fileContents);
+        sc.close();
+        String oldNaam = naam1;
+        String newNaam = doehetNaam;
+        fileContents = fileContents.replaceAll(oldNaam, newNaam);
+        FileWriter writer = new FileWriter(filePath);
+        System.out.println("");
+        System.out.println("new data: "+fileContents);
+        writer.append(fileContents);
+        writer.flush();
+    }
+    public void schrijfNaam2() throws IOException {
+        String filePath = "src/main/Namen.txt";
+        Scanner sc = new Scanner(new File(filePath));
+        StringBuffer buffer = new StringBuffer();
+        while (sc.hasNextLine()) {
+            buffer.append(sc.nextLine()+System.lineSeparator());
+        }
+        String fileContents = buffer.toString();
+        System.out.println("Contents of the file: "+fileContents);
+        sc.close();
+        String oldNaam = naam2;
+        String newNaam = doehetNaam;
+        fileContents = fileContents.replaceAll(oldNaam, newNaam);
+        FileWriter writer = new FileWriter(filePath);
+        System.out.println("");
+        System.out.println("new data: "+fileContents);
+        writer.append(fileContents);
+        writer.flush();
+    }
+    public void schrijfNaam3() throws IOException {
+        String filePath = "src/main/Namen.txt";
+        Scanner sc = new Scanner(new File(filePath));
+        StringBuffer buffer = new StringBuffer();
+        while (sc.hasNextLine()) {
+            buffer.append(sc.nextLine()+System.lineSeparator());
+        }
+        String fileContents = buffer.toString();
+        System.out.println("Contents of the file: "+fileContents);
+        sc.close();
+        String oldNaam = naam3;
+        String newNaam = doehetNaam;
+        fileContents = fileContents.replaceAll(oldNaam, newNaam);
+        FileWriter writer = new FileWriter(filePath);
+        System.out.println("");
+        System.out.println("new data: "+fileContents);
+        writer.append(fileContents);
+        writer.flush();
+    }
+    public void schrijfMoneyBags1() throws IOException {
+        String filePath = "src/main/Moneybags.txt";
+        Scanner sc = new Scanner(new File(filePath));
+        StringBuffer buffer = new StringBuffer();
+        while (sc.hasNextLine()) {
+            buffer.append(sc.nextLine()+System.lineSeparator());
+        }
+        String fileContents = buffer.toString();
+        System.out.println("Contents of the file: "+fileContents);
+        sc.close();
+        int oldCoins = moneyBags1;
+        int newCoins = FXGL.geti("coin");
+        fileContents = fileContents.replaceAll(String.valueOf(oldCoins), String.valueOf(newCoins));
+        FileWriter writer = new FileWriter(filePath);
+        System.out.println("");
+        System.out.println("new data: "+fileContents);
+        writer.append(fileContents);
+        writer.flush();
+    }
+    public void schrijfMoneyBags2() throws IOException {
+        String filePath = "src/main/Moneybags.txt";
+        Scanner sc = new Scanner(new File(filePath));
+        StringBuffer buffer = new StringBuffer();
+        while (sc.hasNextLine()) {
+            buffer.append(sc.nextLine()+System.lineSeparator());
+        }
+        String fileContents = buffer.toString();
+        System.out.println("Contents of the file: "+fileContents);
+        sc.close();
+        int oldCoins = moneyBags2;
+        int newCoins = FXGL.geti("coin");
+        fileContents = fileContents.replaceAll(String.valueOf(oldCoins), String.valueOf(newCoins));
+        FileWriter writer = new FileWriter(filePath);
+        System.out.println("");
+        System.out.println("new data: "+fileContents);
+        writer.append(fileContents);
+        writer.flush();
+    }
+    public void schrijfMoneyBags3() throws IOException {
+        String filePath = "src/main/Moneybags.txt";
+        Scanner sc = new Scanner(new File(filePath));
+        StringBuffer buffer = new StringBuffer();
+        while (sc.hasNextLine()) {
+            buffer.append(sc.nextLine()+System.lineSeparator());
+        }
+        String fileContents = buffer.toString();
+        System.out.println("Contents of the file: "+fileContents);
+        sc.close();
+        int oldCoins = moneyBags3;
+        int newCoins = FXGL.geti("coin");
+        fileContents = fileContents.replaceAll(String.valueOf(oldCoins), String.valueOf(newCoins));
+        FileWriter writer = new FileWriter(filePath);
+        System.out.println("");
+        System.out.println("new data: "+fileContents);
+        writer.append(fileContents);
+        writer.flush();
+    }
+    public void schrijfTijd1() throws IOException {
+        String filePath = "src/main/Tijd.txt";
+        Scanner sc = new Scanner(new File(filePath));
+        StringBuffer buffer = new StringBuffer();
+        while (sc.hasNextLine()) {
+            buffer.append(sc.nextLine()+System.lineSeparator());
+        }
+        String fileContents = buffer.toString();
+        System.out.println("Contents of the file: "+fileContents);
+        sc.close();
+        int oldMinTime = min1;
+        int newMinTime = min;
+        int oldSecTime = sec1;
+        int newSecTime = sec;
+        int oldMsTime = ms1;
+        int newMsTime = ms;
+        fileContents = fileContents.replaceAll(oldMinTime +":"+ oldSecTime+":"+ oldMsTime, newMinTime +":"+ newSecTime +":"+ newMsTime);
+        FileWriter writer = new FileWriter(filePath);
+        System.out.println("");
+        System.out.println("new data: "+fileContents);
+        writer.append(fileContents);
+        writer.flush();
+    }
+    public void schrijfTijd2() throws IOException {
+        String filePath = "src/main/Tijd.txt";
+        Scanner sc = new Scanner(new File(filePath));
+        StringBuffer buffer = new StringBuffer();
+        while (sc.hasNextLine()) {
+            buffer.append(sc.nextLine()+System.lineSeparator());
+        }
+        String fileContents = buffer.toString();
+        System.out.println("Contents of the file: "+fileContents);
+        sc.close();
+        int oldMinTime = min2;
+        int newMinTime = min;
+        int oldSecTime = sec2;
+        int newSecTime = sec;
+        int oldMsTime = ms2;
+        int newMsTime = ms;
+        fileContents = fileContents.replaceAll(oldMinTime +":"+ oldSecTime+":"+ oldMsTime, newMinTime +":"+ newSecTime +":"+ newMsTime);
+        FileWriter writer = new FileWriter(filePath);
+        System.out.println("");
+        System.out.println("new data: "+fileContents);
+        writer.append(fileContents);
+        writer.flush();
+    }
+    public void schrijfTijd3() throws IOException {
+        String filePath = "src/main/Tijd.txt";
+        Scanner sc = new Scanner(new File(filePath));
+        StringBuffer buffer = new StringBuffer();
+        while (sc.hasNextLine()) {
+            buffer.append(sc.nextLine()+System.lineSeparator());
+        }
+        String fileContents = buffer.toString();
+        System.out.println("Contents of the file: "+fileContents);
+        sc.close();
+        int oldMinTime = min3;
+        int newMinTime = min;
+        int oldSecTime = sec3;
+        int newSecTime = sec;
+        int oldMsTime = ms3;
+        int newMsTime = ms;
+        fileContents = fileContents.replaceAll(oldMinTime +":"+ oldSecTime+":"+ oldMsTime, newMinTime +":"+ newSecTime +":"+ newMsTime);
+        FileWriter writer = new FileWriter(filePath);
+        System.out.println("");
+        System.out.println("new data: "+fileContents);
+        writer.append(fileContents);
+        writer.flush();
+    }
+
     public void createScoreboard() throws FileNotFoundException {
         StringBuilder builder = new StringBuilder();
-
-        /*int[][] timeBoard = {{0, 20, 20} , {0,25,20} , {0,30,25}};
-        int[] coinBoard = new int[3];
-        String[] namenBoard = new String[3];
-
-        int totalTime = min * 60 + sec * 60 + ms;
-
-        if (totalTime < timeBoard[0][0]*60 + timeBoard[0][1]*60 + timeBoard[0][2]){
-            timeBoard[0][0] = min;
-            timeBoard[0][1] = sec;
-            timeBoard[0][2] = ms;
-            coinBoard[0] = geti("coin");
-            namenBoard[0] = doehetNaam;
-        } else if (totalTime < timeBoard[1][0]*60 + timeBoard[1][1]*60 + timeBoard[1][2]){
-            timeBoard[1][0] = min;
-            timeBoard[1][1] = sec;
-            timeBoard[1][2] = ms;
-            coinBoard[1] = geti("coin");
-            namenBoard[1] = doehetNaam;
-        } else if (totalTime < timeBoard[2][0]*60 + timeBoard[2][1]*60 + timeBoard[2][2]){
-            timeBoard[2][0] = min;
-            timeBoard[2][1] = sec;
-            timeBoard[2][2] = ms;
-            coinBoard[2] = geti("coin");
-            namenBoard[2] = doehetNaam;
-        }
-
-        builder.append("You found a way out!!\n\n")
-                .append("\nTotal Time: \t")
-                .append(min + ":" + sec+ ":" + ms)
-                .append("\nCollected cashbags: \t")
-                .append(FXGL.geti("coin"))
-                .append("\n\nScoreboard:")
-                .append("\n"+ "1: "+ namenBoard[0] + "\t" + coinBoard[0] +"\tTime: " +timeBoard[0][0] +":"+timeBoard[0][1] +":"+timeBoard[0][2])
-                .append("\n"+ "2: "+ namenBoard[1] + "\t\t" + coinBoard[1] +"\tTime: " +timeBoard[1][0] +":"+timeBoard[1][1] +":"+timeBoard[1][2])
-                .append("\n"+ "3: "+ namenBoard[2] + "\t\t" + coinBoard[2] +"\tTime: " +timeBoard[2][0] +":"+timeBoard[2][1] +":"+timeBoard[2][2])
-                .append("\n\nVul hier het cijfer in dat je onze game geeft: ");
-        FXGL.getDialogService().showInputBox(builder.toString(), name -> {
-            FXGL.getGameController().gotoMainMenu();
-            min = 0;
-            sec = 0;
-            ms = 0;
-        });*/
 
         int tijdMin;
         int tijdSec;
         int tijdMs;
 
+        int totalTime = min * 60 + sec * 60 + ms;
+
+        if (totalTime < min1*60 + sec1*60 + ms1){
+            try {
+                schrijfNaam1();
+                schrijfMoneyBags1();
+                schrijfTijd1();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else if (totalTime < min2*60 + sec2*60 + ms2){
+            try {
+                schrijfNaam2();
+                schrijfMoneyBags2();
+                schrijfTijd2();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else if (totalTime < min3*60 + sec3*60 + ms3){
+            try {
+                schrijfNaam3();
+                schrijfMoneyBags3();
+                schrijfTijd3();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         try {
             File f = new File("src/main/Namen.txt");
             Scanner sc = new Scanner(f);
@@ -338,49 +511,6 @@ public class Game extends GameApplication {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-        /*int totalTime = min * 60 + sec * 60 + ms;
-
-        if (totalTime < timeBoard[0][0]*60 + timeBoard[0][1]*60 + timeBoard[0][2]){
-            timeBoard[0][0] = min;
-            timeBoard[0][1] = sec;
-            timeBoard[0][2] = ms;
-            coinBoard[0] = geti("coin");
-            namenBoard[0] = doehetNaam;
-        } else if (totalTime < timeBoard[1][0]*60 + timeBoard[1][1]*60 + timeBoard[1][2]){
-            timeBoard[1][0] = min;
-            timeBoard[1][1] = sec;
-            timeBoard[1][2] = ms;
-            coinBoard[1] = geti("coin");
-            namenBoard[1] = doehetNaam;
-        } else if (totalTime < timeBoard[2][0]*60 + timeBoard[2][1]*60 + timeBoard[2][2]){
-            timeBoard[2][0] = min;
-            timeBoard[2][1] = sec;
-            timeBoard[2][2] = ms;
-            coinBoard[2] = geti("coin");
-            namenBoard[2] = doehetNaam;
-        }*/
-
-        int totalTime = min * 60 + sec * 60 + ms;
-
-        if (totalTime < min1*60 + sec1*60 + ms1){
-            min1 = min;
-            sec1 = sec;
-            ms1 = ms;
-            moneyBags1 = geti("coin");
-            naam1 = doehetNaam;
-        } else if (totalTime < min2*60 + sec2*60 + ms2){
-            min2 = min;
-            sec2 = sec;
-            ms2 = ms;
-            moneyBags2 = geti("coin");
-            naam2 = doehetNaam;
-        } else if (totalTime < min3*60 + sec3*60 + ms3){
-            min3 = min;
-            sec3 = sec;
-            ms3 = ms;
-            moneyBags3 = geti("coin");
-            naam3 = doehetNaam;
-        }
         builder.append("You found a way out!!\n\n")
                 .append("\nTotal Time: \t")
                 .append(min + ":" + sec+ ":" + ms)
@@ -399,7 +529,6 @@ public class Game extends GameApplication {
             ms = 0;
         });
     }
-
 
     private void setLevel(int levelNum) {
         if (player != null) {
