@@ -1,0 +1,96 @@
+10:08:55.542 [main                     ] DEBUG Logger               - Configured Logger
+10:08:55.581 [main                     ] DEBUG GameApplication      - Logging settings
+Title: A Way Out
+Version: 1.2
+Width: 1050
+Height: 640
+Fullscreen: false
+Intro: false
+Profiling: false
+Single step:false
+App Mode: DEVELOPER
+Menu Key: ESCAPE
+Stage Style: DECORATED
+Scene Factory: class UISceneFactory
+
+10:08:57.160 [JavaFX Application Thread] DEBUG FXGLApplication      - Initializing FXGL
+10:08:57.167 [JavaFX Application Thread] INFO  Engine               - FXGL-11.14 (01.03.2021 16.59) on WINDOWS (J:15.0.2 FX:15)
+10:08:57.168 [JavaFX Application Thread] DEBUG Engine               - JRE Vendor Name: Amazon.com Inc.
+10:08:57.169 [JavaFX Application Thread] DEBUG Engine               - Running on OS: Windows 10 version 10.0
+10:08:57.171 [JavaFX Application Thread] DEBUG Engine               - Architecture: amd64
+10:08:57.172 [JavaFX Application Thread] INFO  Engine               - Source code and latest versions at: https://github.com/AlmasB/FXGL
+10:08:57.173 [JavaFX Application Thread] INFO  Engine               -              Join the FXGL chat at: https://gitter.im/AlmasB/FXGL
+10:08:57.793 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Creating a JavaFX scene
+10:08:58.003 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Target settings size: 1050.0 x 640.0
+10:08:58.004 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Scaled scene size:    1050.0 x 640.0
+10:08:58.004 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Scaled ratio: (1.0, 1.0)
+10:08:58.007 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Set initial scene to FXGLStartupScene
+10:08:58.030 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Opening main window
+10:08:58.307 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Window border size: (14.800048828125, 37.5999755859375)
+10:08:58.308 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Scaled size: 1050.0 x 640.0
+10:08:58.309 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Scaled ratio: (1.0, 1.0)
+10:08:58.311 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Scene size: 1050.0 x 640.0
+10:08:58.312 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Stage size: 1064.800048828125 x 677.5999755859375
+10:08:58.371 [FXGL Background Thread 1 ] DEBUG Engine               - Initializing environment variables
+10:08:58.512 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - User app class for loading assets: class Game
+10:08:58.515 [FXGL Background Thread 1 ] DEBUG GameApplicationServi - Applying CSS: fxgl_dark.css
+10:08:58.518 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:/C:/Users/jfran/.m2/repository/com/github/almasb/fxgl/11.14/fxgl-11.14.jar!/fxglassets/ui/css/fxgl_dark.css
+10:08:58.684 [FXGL Background Thread 1 ] DEBUG GameApplicationServi - Initializing application scenes
+10:08:58.911 [FXGL Background Thread 1 ] DEBUG GameWorld            - Game world initialized
+10:08:59.129 [FXGL Background Thread 1 ] DEBUG PhysicsWorld         - Physics world initialized: appHeight=640, physics.ppm=50,0
+10:08:59.130 [FXGL Background Thread 1 ] DEBUG PhysicsWorld         - Using strategy: BRUTE_FORCE
+10:08:59.140 [FXGL Background Thread 1 ] DEBUG GameScene            - Game scene initialized: 1050x640
+10:08:59.527 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:/C:/Users/jfran/.m2/repository/com/github/almasb/fxgl/11.14/fxgl-11.14.jar!/fxglassets/textures/particles/trace_horizontal.png
+10:08:59.629 [FXGL Background Thread 1 ] DEBUG FXGL.DefaultMenu     - createMenuBodyGameMenu()
+10:08:59.673 [FXGL Background Thread 1 ] DEBUG FXGL.DefaultMenu     - createOptionsMenu()
+10:08:59.689 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:/C:/Users/jfran/.m2/repository/com/github/almasb/fxgl/11.14/fxgl-11.14.jar!/fxglassets/textures/particles/smoke.png
+10:08:59.838 [FXGL Background Thread 1 ] DEBUG GameApplicationServi - Application scenes initialized
+10:08:59.873 [FXGL Background Thread 1 ] DEBUG SystemBundleService  - Loading FXGL system data
+10:08:59.884 [FXGL Background Thread 1 ] DEBUG FileSystemAccess     - Reading from: C:\Users\jfran\OneDrive - Hogeschool Leiden\IPOSE-Maven\system\fxgl.bundle
+10:08:59.904 [FXGL Background Thread 1 ] DEBUG SystemBundleService  - Bundle FXGL: {}
+10:08:59.905 [FXGL Background Thread 1 ] DEBUG UpdaterService       - Checking for updates
+10:08:59.919 [FXGL Background Thread 1 ] DEBUG FXGLApplication      - Loading default localization
+10:08:59.920 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:/C:/Users/jfran/.m2/repository/com/github/almasb/fxgl/11.14/fxgl-11.14.jar!/fxglassets/languages/english.lang
+10:08:59.957 [FXGL Background Thread 1 ] INFO  FXGLApplication      - FXGL initialization took: 1,585 sec
+10:08:59.971 [FXGL Background Thread 4 ] DEBUG FXGLApplication      - Loading fonts
+10:08:59.973 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:/C:/Users/jfran/.m2/repository/com/github/almasb/fxgl/11.14/fxgl-11.14.jar!/fxglassets/ui/fonts/VarelaRound-Regular.ttf
+10:08:59.994 [JavaFX Application Thread] DEBUG Input                - Registered new binding: left - A
+10:08:59.995 [JavaFX Application Thread] DEBUG Input                - Registered new binding: right - D
+10:08:59.996 [JavaFX Application Thread] DEBUG Input                - Registered new binding: jump - W
+10:08:59.997 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:/C:/Users/jfran/.m2/repository/com/github/almasb/fxgl/11.14/fxgl-11.14.jar!/fxglassets/textures/fxgl_icon.png
+10:09:00.027 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:/C:/Users/jfran/.m2/repository/com/github/almasb/fxgl/11.14/fxgl-11.14.jar!/fxglassets/ui/cursors/fxgl_default.png
+10:09:00.052 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Screenshot - P
+10:09:00.054 [JavaFX Application Thread] DEBUG Input                - Registered new binding: System info dump - CTRL+9
+10:09:00.055 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Restart - CTRL+R
+10:09:00.058 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Toggle Debug Camera - CTRL+C
+10:09:00.063 [JavaFX Application Thread] DEBUG LoopRunner           - Starting loop
+10:09:00.064 [JavaFX Application Thread] DEBUG LoopRunner           - Initializing JavaFX AnimationTimerLoop
+10:09:00.070 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+10:09:00.087 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from FXGLStartupScene and adding to FXGLMainMenuDummyScene
+10:09:00.088 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - FXGLStartupScene -> FXGLMainMenuDummyScene
+10:09:00.088 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Push state: StartMenu
+10:09:00.089 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+10:09:00.144 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from FXGLMainMenuDummyScene and adding to StartMenu
+10:09:00.146 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - FXGLMainMenuDummyScene -> StartMenu
+10:09:00.595 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:/C:/Users/jfran/.m2/repository/com/github/almasb/fxgl/11.14/fxgl-11.14.jar!/fxglassets/ui/fonts/Abel-Regular.ttf
+10:09:00.630 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:/C:/Users/jfran/.m2/repository/com/github/almasb/fxgl/11.14/fxgl-11.14.jar!/fxglassets/ui/fonts/lucida_console.ttf
+10:09:00.670 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:/C:/Users/jfran/.m2/repository/com/github/almasb/fxgl/11.14/fxgl-11.14.jar!/fxglassets/ui/fonts/Courier-Prime.ttf
+10:09:00.699 [JavaFX Application Thread] DEBUG FXGLApplication      - Registering font factories with UI factory
+10:09:01.191 [FXGL Background Thread 2 ] INFO  UpdaterService       - Your current version:  11.14
+10:09:01.197 [FXGL Background Thread 2 ] INFO  UpdaterService       - Latest stable version: 17.1
+10:09:01.513 [JavaFX Application Thread] DEBUG Menu                 - fireExit()
+10:09:01.519 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Push state: DialogSubScene
+10:09:01.520 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+10:09:01.523 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from StartMenu and adding to DialogSubScene
+10:09:01.524 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - StartMenu -> DialogSubScene
+10:09:02.550 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Pop state: DialogSubScene
+10:09:02.551 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+10:09:02.552 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from DialogSubScene and adding to StartMenu
+10:09:02.553 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - StartMenu <- DialogSubScene
+10:09:02.553 [JavaFX Application Thread] DEBUG FXGLApplication      - Exiting FXGL
+10:09:02.554 [JavaFX Application Thread] DEBUG LoopRunner           - Stopping loop
+10:09:02.554 [JavaFX Application Thread] DEBUG SystemBundleService  - Saving FXGL system data
+10:09:02.558 [JavaFX Application Thread] DEBUG FileSystemAccess     - Writing to: C:\Users\jfran\OneDrive - Hogeschool Leiden\IPOSE-Maven\system\fxgl.bundle
+10:09:02.562 [JavaFX Application Thread] DEBUG Async                - Shutting down background threads
+10:09:02.564 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Closing main window
+10:09:02.623 [JavaFX Application Thread] DEBUG Logger               - Closing Logger
