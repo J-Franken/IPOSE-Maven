@@ -231,7 +231,6 @@ public class Game extends GameApplication {
     }
 
     public void askName(){
-        StringBuilder builder = new StringBuilder();
         FXGL.getDialogService().showInputBox("Vul hier jouw naam in: ", name -> {
             doehetNaam = name;
             try {
@@ -511,8 +510,8 @@ public class Game extends GameApplication {
                 .append("\n\nScoreboard:")
 
                 .append("\n1: " + naam1 + "\t Moneybags: " + moneyBags1 + "\tTime: " + min1+":"+sec1+":"+ms1)
-                .append("\n2: " + naam2 + "\t\t Moneybags: " + moneyBags2 + "\tTime: " + min2+":"+sec2+":"+ms2)
-                .append("\n3: " + naam3 + "\t\t Moneybags: " + moneyBags3 + "\tTime: " + min3+":"+sec3+":"+ms3)
+                .append("\n2: " + naam2 + "\t Moneybags: " + moneyBags2 + "\tTime: " + min2+":"+sec2+":"+ms2)
+                .append("\n3: " + naam3 + "\t Moneybags: " + moneyBags3 + "\tTime: " + min3+":"+sec3+":"+ms3)
                 .append("\n\nVul hier het cijfer in dat je onze game geeft: ");
         FXGL.getDialogService().showInputBox(builder.toString(), name -> {
             FXGL.getGameController().gotoMainMenu();
