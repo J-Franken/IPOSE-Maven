@@ -41,7 +41,7 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class Game extends GameApplication {
 
-    private static final int MAX_LEVEL = 1;
+    private static final int MAX_LEVEL = 4;
     private static final int STARTING_LEVEL = 0;
     private Entity player;
     private int ms = 0;
@@ -132,7 +132,7 @@ public class Game extends GameApplication {
 
     @Override
     protected void onPreInit() {
-        getSettings().setGlobalMusicVolume(0.50);
+        getSettings().setGlobalMusicVolume(0.25);
         loopBGM("dungeon.wav");
     }
 
@@ -146,14 +146,7 @@ public class Game extends GameApplication {
                 inc("coin", +1);
                 coin.removeFromWorld();
             }
-
-
-
         });
-
-
-
-
 
         onCollisionOneTimeOnly(EntityTypes.PLAYER, EntityTypes.CUTSCENE, (player, cutscene) -> {
             getDialog();
@@ -208,6 +201,9 @@ public class Game extends GameApplication {
         if (player.getY() > getAppHeight() + 200) {
             onPlayerDied();
         }
+        if ((geti("coin")) < 0) {
+            set("coin", 0);
+        }
     }
 
     protected void initGameVars(Map<String, Object> vars){
@@ -216,8 +212,8 @@ public class Game extends GameApplication {
     }
 
     public void onPlayerDied() {
-        setLevel(geti("level"));
-        set("coin", 0);
+            setLevel(geti("level"));
+            inc("coin", -2);
     }
 
     public void getDialog(){
