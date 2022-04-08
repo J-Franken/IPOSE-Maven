@@ -429,10 +429,6 @@ public class Game extends GameApplication {
     public void createScoreboard() throws FileNotFoundException {
         StringBuilder builder = new StringBuilder();
 
-        int tijdMin;
-        int tijdSec;
-        int tijdMs;
-
         int totalTime = min * 60 + sec * 60 + ms;
 
         if (totalTime < min1*60 + sec1*60 + ms1){
