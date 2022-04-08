@@ -1,31 +1,34 @@
-import com.almasb.fxgl.animation.Interpolators;
-import com.almasb.fxgl.app.ApplicationMode;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.*;
-import com.almasb.fxgl.core.util.LazyValue;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
-import com.almasb.fxgl.entity.SpawnData;
-import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.input.UserAction;
-import com.almasb.fxgl.input.view.KeyView;
 import com.almasb.fxgl.input.virtual.VirtualButton;
 import com.almasb.fxgl.physics.CollisionHandler;
 import com.almasb.fxgl.physics.PhysicsComponent;
+import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.util.Builder;
 import javafx.util.Duration;
-import com.almasb.fxgl.cutscene.Cutscene;
+import javafx.scene.control.ButtonBase;
 
-import java.awt.*;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
+import javax.swing.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.Writer;
 import java.util.Map;
+import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 
@@ -38,6 +41,23 @@ public class Game extends GameApplication {
     private int ms = 0;
     private int sec = 0;
     private int min = 0;
+    private String doehetNaam;
+    private String naam1;
+    private String naam2;
+    private String naam3;
+    private int moneyBags1;
+    private int moneyBags2;
+    private int moneyBags3;
+    private int min1;
+    private int sec1;
+    private int ms1;
+    private int min2;
+    private int sec2;
+    private int ms2;
+    private int min3;
+    private int sec3;
+    private int ms3;
+
 
     @Override
     protected void initSettings(GameSettings gameSettings) {
@@ -106,7 +126,7 @@ public class Game extends GameApplication {
 
     @Override
     protected void onPreInit() {
-        getSettings().setGlobalMusicVolume(0.50);
+        getSettings().setGlobalMusicVolume(0.25);
         loopBGM("dungeon.wav");
     }
 
@@ -120,14 +140,7 @@ public class Game extends GameApplication {
                 inc("coin", +1);
                 coin.removeFromWorld();
             }
-
-
-
         });
-
-
-
-
 
         onCollisionOneTimeOnly(EntityTypes.PLAYER, EntityTypes.CUTSCENE, (player, cutscene) -> {
             getDialog();
@@ -182,6 +195,9 @@ public class Game extends GameApplication {
         if (player.getY() > getAppHeight() + 200) {
             onPlayerDied();
         }
+        if ((geti("coin")) < 0) {
+            set("coin", 0);
+        }
     }
 
     protected void initGameVars(Map<String, Object> vars){
@@ -190,8 +206,8 @@ public class Game extends GameApplication {
     }
 
     public void onPlayerDied() {
-        setLevel(geti("level"));
-        set("coin", 0);
+            setLevel(geti("level"));
+            inc("coin", -2);
     }
 
     public void getDialog(){
@@ -199,26 +215,184 @@ public class Game extends GameApplication {
         });
     }
 
-
     private void nextLevel() {
         if (geti("level") == MAX_LEVEL) {
-            createScoreboard();
+            askName();
         } else {
             inc("level", +1);
             setLevel(geti("level"));
         }
     }
 
-    public void createScoreboard(){
+    public void askName(){
         StringBuilder builder = new StringBuilder();
+        FXGL.getDialogService().showInputBox("Vul hier jouw naam in: ", name -> {
+            doehetNaam = name;
+            try {
+                createScoreboard();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        });
+
+    }
+    public void createScoreboard() throws FileNotFoundException {
+        StringBuilder builder = new StringBuilder();
+
+        /*int[][] timeBoard = {{0, 20, 20} , {0,25,20} , {0,30,25}};
+        int[] coinBoard = new int[3];
+        String[] namenBoard = new String[3];
+
+        int totalTime = min * 60 + sec * 60 + ms;
+
+        if (totalTime < timeBoard[0][0]*60 + timeBoard[0][1]*60 + timeBoard[0][2]){
+            timeBoard[0][0] = min;
+            timeBoard[0][1] = sec;
+            timeBoard[0][2] = ms;
+            coinBoard[0] = geti("coin");
+            namenBoard[0] = doehetNaam;
+        } else if (totalTime < timeBoard[1][0]*60 + timeBoard[1][1]*60 + timeBoard[1][2]){
+            timeBoard[1][0] = min;
+            timeBoard[1][1] = sec;
+            timeBoard[1][2] = ms;
+            coinBoard[1] = geti("coin");
+            namenBoard[1] = doehetNaam;
+        } else if (totalTime < timeBoard[2][0]*60 + timeBoard[2][1]*60 + timeBoard[2][2]){
+            timeBoard[2][0] = min;
+            timeBoard[2][1] = sec;
+            timeBoard[2][2] = ms;
+            coinBoard[2] = geti("coin");
+            namenBoard[2] = doehetNaam;
+        }
+
         builder.append("You found a way out!!\n\n")
                 .append("\nTotal Time: \t")
                 .append(min + ":" + sec+ ":" + ms)
                 .append("\nCollected cashbags: \t")
                 .append(FXGL.geti("coin"))
-                .append("\n\nEnter your name to join the scoreboard:");
+                .append("\n\nScoreboard:")
+                .append("\n"+ "1: "+ namenBoard[0] + "\t" + coinBoard[0] +"\tTime: " +timeBoard[0][0] +":"+timeBoard[0][1] +":"+timeBoard[0][2])
+                .append("\n"+ "2: "+ namenBoard[1] + "\t\t" + coinBoard[1] +"\tTime: " +timeBoard[1][0] +":"+timeBoard[1][1] +":"+timeBoard[1][2])
+                .append("\n"+ "3: "+ namenBoard[2] + "\t\t" + coinBoard[2] +"\tTime: " +timeBoard[2][0] +":"+timeBoard[2][1] +":"+timeBoard[2][2])
+                .append("\n\nVul hier het cijfer in dat je onze game geeft: ");
         FXGL.getDialogService().showInputBox(builder.toString(), name -> {
             FXGL.getGameController().gotoMainMenu();
+            min = 0;
+            sec = 0;
+            ms = 0;
+        });*/
+
+        int tijdMin;
+        int tijdSec;
+        int tijdMs;
+
+        try {
+            File f = new File("src/main/Namen.txt");
+            Scanner sc = new Scanner(f);
+
+            while(sc.hasNextLine()){
+                String line = sc.nextLine();
+                String[] names = line.split(";");
+                naam1 = names[names.length -3];
+                naam2 = names[names.length -2];
+                naam3 = names[names.length -1];
+
+            }
+            sc.close();
+
+            File myObj = new File("src/main/Moneybags.txt");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String line = myReader.nextLine();
+                String[] bags = line.split(";");
+                moneyBags1 = Integer.parseInt(bags[bags.length -3]);
+                moneyBags2 = Integer.parseInt(bags[bags.length -2]);
+                moneyBags3 = Integer.parseInt(bags[bags.length -1]);
+            }
+            myReader.close();
+            File cmon = new File("src/main/Tijd.txt");
+            Scanner ttt = new Scanner(cmon);
+
+            while(ttt.hasNextLine()){
+                String line = ttt.nextLine();
+                String[] tijden = line.split(":");
+                min1 = Integer.parseInt(tijden[tijden.length -9]);
+                sec1 = Integer.parseInt(tijden[tijden.length -8]);
+                ms1 = Integer.parseInt(tijden[tijden.length -7]);
+                min2 = Integer.parseInt(tijden[tijden.length -6]);
+                sec2 = Integer.parseInt(tijden[tijden.length -5]);
+                ms2 = Integer.parseInt(tijden[tijden.length -4]);
+                min3 = Integer.parseInt(tijden[tijden.length -3]);
+                sec3 = Integer.parseInt(tijden[tijden.length -2]);
+                ms3 = Integer.parseInt(tijden[tijden.length -1]);
+
+            }
+            sc.close();
+
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        /*int totalTime = min * 60 + sec * 60 + ms;
+
+        if (totalTime < timeBoard[0][0]*60 + timeBoard[0][1]*60 + timeBoard[0][2]){
+            timeBoard[0][0] = min;
+            timeBoard[0][1] = sec;
+            timeBoard[0][2] = ms;
+            coinBoard[0] = geti("coin");
+            namenBoard[0] = doehetNaam;
+        } else if (totalTime < timeBoard[1][0]*60 + timeBoard[1][1]*60 + timeBoard[1][2]){
+            timeBoard[1][0] = min;
+            timeBoard[1][1] = sec;
+            timeBoard[1][2] = ms;
+            coinBoard[1] = geti("coin");
+            namenBoard[1] = doehetNaam;
+        } else if (totalTime < timeBoard[2][0]*60 + timeBoard[2][1]*60 + timeBoard[2][2]){
+            timeBoard[2][0] = min;
+            timeBoard[2][1] = sec;
+            timeBoard[2][2] = ms;
+            coinBoard[2] = geti("coin");
+            namenBoard[2] = doehetNaam;
+        }*/
+
+        int totalTime = min * 60 + sec * 60 + ms;
+
+        if (totalTime < min1*60 + sec1*60 + ms1){
+            min1 = min;
+            sec1 = sec;
+            ms1 = ms;
+            moneyBags1 = geti("coin");
+            naam1 = doehetNaam;
+        } else if (totalTime < min2*60 + sec2*60 + ms2){
+            min2 = min;
+            sec2 = sec;
+            ms2 = ms;
+            moneyBags2 = geti("coin");
+            naam2 = doehetNaam;
+        } else if (totalTime < min3*60 + sec3*60 + ms3){
+            min3 = min;
+            sec3 = sec;
+            ms3 = ms;
+            moneyBags3 = geti("coin");
+            naam3 = doehetNaam;
+        }
+        builder.append("You found a way out!!\n\n")
+                .append("\nTotal Time: \t")
+                .append(min + ":" + sec+ ":" + ms)
+                .append("\nCollected cashbags: \t")
+                .append(FXGL.geti("coin"))
+                .append("\n\nScoreboard:")
+
+                .append("\n1: " + naam1 + "\t Moneybags: " + moneyBags1 + "\tTime: " + min1+":"+sec1+":"+ms1)
+                .append("\n2: " + naam2 + "\t\t Moneybags: " + moneyBags2 + "\tTime: " + min2+":"+sec2+":"+ms2)
+                .append("\n3: " + naam3 + "\t\t Moneybags: " + moneyBags3 + "\tTime: " + min3+":"+sec3+":"+ms3)
+                .append("\n\nVul hier het cijfer in dat je onze game geeft: ");
+        FXGL.getDialogService().showInputBox(builder.toString(), name -> {
+            FXGL.getGameController().gotoMainMenu();
+            min = 0;
+            sec = 0;
+            ms = 0;
         });
     }
 
